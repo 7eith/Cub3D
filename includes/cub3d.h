@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/01 06:39:55 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 09:53:55 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,12 +18,22 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
+# define C_SETTINGS ""
+
 enum
 {
-	ST_SAVE = (1 << 0)
+	ST_SAVE = (1 << 0),
+};
+
+enum					e_err
+{
+	ERR_MAP,
+	ERR_RD,
+	ERR_KEY
 };
 
 /*
@@ -58,7 +68,16 @@ typedef	struct			s_player
 typedef	struct			s_settings
 {
 	unsigned char		flags;
+	int					w;
+	int					h;
 }						t_settings;
+
+typedef	struct			s_map
+{
+	int					**map;
+	int					w;
+	int					h;
+}						t_map;
 
 /*
 **	mlx_p: 				MiniLibX pointer
@@ -67,12 +86,13 @@ typedef	struct			s_settings
 **	t_setting:			struct settings
 */
 
-typedef struct 			s_cub3d
+typedef struct			s_cub3d
 {
 	void				*mlx_p;
 	void				*mlx_w;
 	t_player			*player;
 	t_settings			*settings;
+	t_map				*map;
 }						t_cub3d;
 
 /*
@@ -85,6 +105,6 @@ int						main(int argsc, char **args);
 ** 	srcs/parser.c
 */
 
-void					parse(t_settings *settings, int argc, char **args);
+void					parse(t_cub3d *cube, int argc, char **args);
 
 #endif

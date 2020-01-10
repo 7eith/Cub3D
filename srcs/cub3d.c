@@ -6,16 +6,23 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/01 07:03:15 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/06 15:35:35 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	init_settings(t_settings *settings)
+void	init_struct(t_cub3d *cube)
 {
-	settings->flags = 0;
+	t_settings *s;
+
+	if (!(s = ft_calloc(1, sizeof(t_settings))))
+		return ;
+	s->w = -1;
+	s->h = -1;
+	s->flags = 0;
+	cube->settings = s;
 }
 
 /*
@@ -26,13 +33,39 @@ void	init_settings(t_settings *settings)
 
 int		main(int argsc, char **args)
 {
-	t_settings		settings;
-	int				loop = 100;
+	t_cub3d		vars;
 
-
-	init_settings(&settings);
-	parse(&settings, argsc, args);
+	init_struct(&vars);
+	parse(&vars, argsc, args);
+	return (0);
 }
+
+	// int		size_w;
+	// int		size_h;
+
+
+	// void		*mlx;
+	// void		*window;
+	// void		*img;
+	// int			*data;
+	// int			bpp;
+	// int			endian;
+	// int			size_line;
+
+	// int			h;
+	// int			w;
+
+	// w = 0;
+	// h = 0;
+	// size_w = 1000;
+	// size_h = 1000;
+
+	// mlx = mlx_init();
+	// window = mlx_new_window(mlx, size_w, size_h, "slt");
+	// img = mlx_xpm_file_to_image(mlx, "textures/pikachu.xpm", &size_w, &size_h);
+	// data = (int *)mlx_get_data_addr(img, &bpp, &size_line, &endian);
+	// mlx_put_image_to_window(mlx, window, img, 0, 0);
+	// mlx_loop(mlx);
 
 // set color lol
 	// get color : settings.color.c

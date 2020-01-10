@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/30 21:50:12 by amonteli     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/01 04:31:02 by amonteli    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/03 16:40:04 by amonteli    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -64,7 +64,7 @@ LIBFT_SRCS	=		ft_atoi.c				\
 SRCS 		=		cub3d.c					\
 					parser.c				\
 
-FLAGS 		= 		-Wall -Wextra -Werror
+FLAGS 		= 		-Wall -Wextra -Werror -g3 -fsanitize=address
 
 OBJS		= 		$(addprefix srcs/, $(SRCS:.c=.o)) $(addprefix libft/, $(LIBFT_SRCS:.c=.o))
 
@@ -76,7 +76,7 @@ $(NAME)		: $(OBJS)
 		@make -C mlx
 		@make -C libft
 		@cp libft/libft.a $(NAME)
-		@gcc $(FLAGS) -I mlx -L mlx -lmlx -framework OpenGL -framework AppKit -I $(HEADERS) $(OBJS) -o $(NAME)
+		@gcc $(FLAGS) -I mlx -L mlx -lmlx -framework OpenGL -framework AppKit -I $(HEADERS) $(OBJS) $(LIB) -o $(NAME)
 		@echo "\033[32mCub3d ready to be launched!\033[0m"
 
 %.o: %.c $(HEADERS) libft/libft.h
