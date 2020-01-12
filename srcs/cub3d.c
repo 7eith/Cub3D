@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/06 15:35:35 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 03:52:13 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,13 +15,11 @@
 
 void	init_struct(t_cub3d *cube)
 {
-	t_settings *s;
+	t_settings s;
 
-	if (!(s = ft_calloc(1, sizeof(t_settings))))
-		return ;
-	s->w = -1;
-	s->h = -1;
-	s->flags = 0;
+	s.w = -1;
+	s.h = -1;
+	s.flags = 0;
 	cube->settings = s;
 }
 
@@ -33,10 +31,14 @@ void	init_struct(t_cub3d *cube)
 
 int		main(int argsc, char **args)
 {
-	t_cub3d		vars;
+	t_cub3d		*vars;
 
-	init_struct(&vars);
-	parse(&vars, argsc, args);
+	if (!(vars = malloc(sizeof(t_cub3d))))
+		return (0);
+	init_struct(vars);
+	vars->mlx_p = mlx_init();
+	parse(vars, argsc, args);
+	printf("parsed");
 	return (0);
 }
 

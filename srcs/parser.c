@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 22:14:42 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 10:10:31 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 03:55:23 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ void		check_args(t_cub3d *cube, int argc, char **args)
 	if (argc == 3 && ft_strncmp(args[2], "--save", ft_strlen(args[2])))
 		report_error("use ./Cub3D <map> (--save)");
 	else
-		cube->settings->flags |= ST_SAVE;
+		cube->settings.flags |= ST_SAVE;
 }
 
 int			parse_resolution(t_cub3d *vars, char *line)
@@ -39,16 +39,33 @@ int			parse_resolution(t_cub3d *vars, char *line)
 	count = 1;
 	while (line[count] == ' ' && line[count])
 		count++;
-	if (!(vars->settings->w = ft_atoi(line + count)))
+	if (!(vars->settings.w = ft_atoi(line + count)))
 		return (0);
-	count += ft_numlen(vars->settings->w);
+	count += ft_numlen(vars->settings.w);
 	while (line[count] == ' ' && line[count])
 		count++;
-	if (!(vars->settings->h = ft_atoi(line + count)))
+	if (!(vars->settings.h = ft_atoi(line + count)))
 		return (0);
-	count += ft_numlen(vars->settings->w);
+	count += ft_numlen(vars->settings.w);
 	printf("%s\n", line);
 	free(line);
+	return (1);
+}
+
+int			parse_textures(int texture, t_cub3d *vars, char *line)
+{
+	(void)vars;
+	(void)line;
+	void		*img;
+
+	printf("slt=%s\n", line + 3);
+	// printf("received=%s\n", line);
+	if (texture)
+		printf("slt");
+	img = mlx_xpm_file_to_image(vars->mlx_p, line + 3, &vars->textures[texture].width, &vars->textures[texture].height);
+		// report_error("probleme when reading NO");
+	// if (texture == 1)
+	// data = (int *)mlx_get_data_addr(img, &bpp, &size_line, &endian);
 	return (1);
 }
 
@@ -59,7 +76,6 @@ int			parse_var(t_cub3d *vars, char *line)
 	count = 0;
 	(void)vars;
 	printf("received=%s\n", line);
-	// printf("[%c]", line[count]);
 	if (line[count] == ' ')
 	{
 		while(line[count])
@@ -69,7 +85,12 @@ int			parse_var(t_cub3d *vars, char *line)
 		}
 	}
 	if (line[count] == 'R')
+	{
 		parse_resolution(vars, line) ? 0 : report_error("Error when reading resolution");
+		return (1);
+	}
+	if (line[count] == 'N' && line[count + 1] == 'O')
+		return (parse_textures(1, vars, line) ? 1 : 0);
 	return (1);
 }
 
@@ -81,7 +102,7 @@ void		parse_settings(t_cub3d *vars, int fd)
 	while ((ret = get_next_line(fd, &line)))
 	{
 		if (ret == -1)
-			report_error("Error when reading map.");
+			report_error("Error when reading.");
 		if (!parse_var(vars, line))
 			report_error("Error when reading key.");
 		// printf("[%d] line=%s\n", ret, line);

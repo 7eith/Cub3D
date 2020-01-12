@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 09:53:55 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 03:51:34 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,7 @@
 # include "../mlx/mlx.h"
 
 # define C_SETTINGS ""
+# define MAP_ACCEPT_FLAGS "012NSWE"
 
 enum
 {
@@ -53,6 +54,15 @@ typedef union			u_color
 		unsigned char	a;
 	}					rgb;
 }						t_color;
+
+typedef	struct			s_textures
+{
+	int					c;
+	int					width;
+	int					height;
+	void				*img;
+	int					*data;
+}						t_textures;
 
 /*
 **	x:	x position
@@ -90,9 +100,10 @@ typedef struct			s_cub3d
 {
 	void				*mlx_p;
 	void				*mlx_w;
-	t_player			*player;
-	t_settings			*settings;
-	t_map				*map;
+	t_player			player;
+	t_settings			settings;
+	t_map				map;
+	t_textures			textures[4];
 }						t_cub3d;
 
 /*
