@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/30 21:50:12 by amonteli     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/03 16:40:04 by amonteli    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/12 08:00:35 by amonteli    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -64,7 +64,7 @@ LIBFT_SRCS	=		ft_atoi.c				\
 SRCS 		=		cub3d.c					\
 					parser.c				\
 
-FLAGS 		= 		-Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
 
 OBJS		= 		$(addprefix srcs/, $(SRCS:.c=.o)) $(addprefix libft/, $(LIBFT_SRCS:.c=.o))
 

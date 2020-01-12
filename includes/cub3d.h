@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/12 03:51:34 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 08:28:50 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,11 +30,22 @@ enum
 	ST_SAVE = (1 << 0),
 };
 
+/*
+** ERR_INVALID_MAP_NAME
+** ERR_DK = Error double key entered
+** ERR_IK = Error invalid key
+** ERR_EK = Error empty key
+*/
+
 enum					e_err
 {
-	ERR_MAP,
-	ERR_RD,
-	ERR_KEY
+	ERR_INVALID_ARGUMENTS,
+	ERR_INVALID_MAP_NAME,
+	ERR_READING,
+	ERR_INVALID_KEY,
+	ERR_DOUBLE_KEY,
+	ERR_EMPTY_KEY,
+	ERR_INVALID_SPACED_LINE
 };
 
 /*
@@ -57,7 +68,6 @@ typedef union			u_color
 
 typedef	struct			s_textures
 {
-	int					c;
 	int					width;
 	int					height;
 	void				*img;
@@ -73,21 +83,8 @@ typedef	struct			s_player
 {
 	float				x;
 	float				z;
+	float				dir;
 }						t_player;
-
-typedef	struct			s_settings
-{
-	unsigned char		flags;
-	int					w;
-	int					h;
-}						t_settings;
-
-typedef	struct			s_map
-{
-	int					**map;
-	int					w;
-	int					h;
-}						t_map;
 
 /*
 **	mlx_p: 				MiniLibX pointer
@@ -96,15 +93,14 @@ typedef	struct			s_map
 **	t_setting:			struct settings
 */
 
-typedef struct			s_cub3d
+typedef struct			s_game
 {
-	void				*mlx_p;
-	void				*mlx_w;
+	void				*mlx;
+	void				*window;
+	int					screen;
 	t_player			player;
-	t_settings			settings;
-	t_map				map;
-	t_textures			textures[4];
-}						t_cub3d;
+	t_textures			textures[5];
+}						t_game;
 
 /*
 ** 	srcs/cub3d.c
@@ -116,6 +112,6 @@ int						main(int argsc, char **args);
 ** 	srcs/parser.c
 */
 
-void					parse(t_cub3d *cube, int argc, char **args);
+void					parse(t_game *vars, int argc, char **args);
 
 #endif
