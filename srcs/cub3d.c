@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/12 08:19:02 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/16 03:49:30 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,6 @@ int		main(int argsc, char **args)
 	if (!(vars = malloc(sizeof(t_game))))
 		return (0);
 	parse(vars, argsc, args);
-	printf("save?=%d\n", vars->screen);
+	// printf("save?=%d\n", vars->screen);
 	return (0);
 }

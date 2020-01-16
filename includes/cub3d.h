@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/12 08:28:50 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/16 03:51:04 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,8 @@
 enum
 {
 	ST_SAVE = (1 << 0),
+	FLOOR = 0,
+	SKY = 1
 };
 
 /*
@@ -45,7 +47,8 @@ enum					e_err
 	ERR_INVALID_KEY,
 	ERR_DOUBLE_KEY,
 	ERR_EMPTY_KEY,
-	ERR_INVALID_SPACED_LINE
+	ERR_INVALID_SPACED_LINE,
+	ERR_INVALID_RGB_KEY
 };
 
 /*
@@ -98,8 +101,11 @@ typedef struct			s_game
 	void				*mlx;
 	void				*window;
 	int					screen;
+	int					width;
+	int					height;
 	t_player			player;
 	t_textures			textures[5];
+	t_color				colors[2];
 }						t_game;
 
 /*
