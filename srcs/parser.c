@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 22:14:42 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 06:19:41 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/20 07:15:58 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,24 +47,30 @@ void		check_programs_args(t_game *vars, int argc, char **args)
 
 int			parse_color(t_game *vars, char *line, int type)
 {
-	int		count;
-	t_color	color;
+	t_color		color;
 
-	count = 3;
-	while (count)
-	{
-		// printf("line={%s}\n", line);
-		count == 3 ? color.rgb.r = ft_atoi(line) : NULL;
-		count == 2 ? color.rgb.g = ft_atoi(line) : NULL;
-		count == 1 ? color.rgb.b = ft_atoi(line) : NULL;
-		while (line && ft_isdigit(*line))
-			line++;
-		printf("line={%s}\n", line);
+	color.rgb.a = 0;
+	color.rgb.r = ft_atoi(line);
+	while (ft_isdigit(*line) || *line == ' ')
 		line++;
-		count--;
-	}
-	printf("type=%s\n", !type ? "Floor" : "Sky");
-	printf("r=%d, g=%d, b=%d\n", color.rgb.r, color.rgb.g, color.rgb.b);
+	if (*line != ',')
+		return (ERR_INVALID_RGB_KEY);
+	line++;
+	color.rgb.g = ft_atoi(line) > 255;
+	while (ft_isdigit(*line) || *line == ' ')
+		line++;
+	if (*line != ',')
+		return (ERR_INVALID_RGB_KEY);
+	line++;
+	color.rgb.b = ft_atoi(line);
+	while (ft_isdigit(*line) || *line == ' ')
+		line++;
+	if (*line)
+		report_error(ERR_INVALID_RGB_KEY);
+	vars->colors[type] = &color;
+	if (color.rgb.r > 255 ||
+	vars->colors[type]->rgb.g > 255 || vars->colors[type]->rgb.b > 255)
+		report_error(ERR_INVALID_RGB_KEY);
 	return (1);
 }
 
@@ -111,4 +117,6 @@ void		parse(t_game *vars, int argc, char **args)
 	check_programs_args(vars, argc, args);
 	fd = open(args[1], O_RDONLY);
 	parse_settings(vars, fd);
+	printf("r=%d, g=%d, b=%d\n", vars->colors[FLOOR]->rgb.r, vars->colors[FLOOR]->rgb.g, vars->colors[FLOOR]->rgb.b);
+	printf("rgb=%d\n", vars->colors[FLOOR]->c);
 }

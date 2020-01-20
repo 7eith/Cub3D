@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 03:51:04 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/20 06:24:37 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,7 +105,8 @@ typedef struct			s_game
 	int					height;
 	t_player			player;
 	t_textures			textures[5];
-	t_color				colors[2];
+	t_color				*colors[2];
+	char				**map;
 }						t_game;
 
 /*
