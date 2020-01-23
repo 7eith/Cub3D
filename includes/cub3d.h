@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/20 06:24:37 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 04:41:30 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,33 +22,31 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
-# define C_SETTINGS ""
-# define MAP_ACCEPT_FLAGS "012NSWE"
+/*
+**	Configurations key in map.cub
+*/
 
-enum
+enum					e_conf
 {
-	ST_SAVE = (1 << 0),
-	FLOOR = 0,
-	SKY = 1
+	R = (1 << 0),
+	T_NO = (1 << 1),
+	T_SO = (1 << 2),
+	T_WE = (1 << 3),
+	T_EA = (1 << 4),
+	T_S = (1 << 5),
+	F = (1 << 6),
+	C = (1 << 7),
 };
 
 /*
-** ERR_INVALID_MAP_NAME
-** ERR_DK = Error double key entered
-** ERR_IK = Error invalid key
-** ERR_EK = Error empty key
+** 	Enum
+**	Colored Textures. (RGB Textures)
 */
 
-enum					e_err
+enum					e_colored_textures
 {
-	ERR_INVALID_ARGUMENTS,
-	ERR_INVALID_MAP_NAME,
-	ERR_READING,
-	ERR_INVALID_KEY,
-	ERR_DOUBLE_KEY,
-	ERR_EMPTY_KEY,
-	ERR_INVALID_SPACED_LINE,
-	ERR_INVALID_RGB_KEY
+	FLOOR,
+	SKY
 };
 
 /*
@@ -69,33 +67,6 @@ typedef union			u_color
 	}					rgb;
 }						t_color;
 
-typedef	struct			s_textures
-{
-	int					width;
-	int					height;
-	void				*img;
-	int					*data;
-}						t_textures;
-
-/*
-**	x:	x position
-**	y:	y position
-*/
-
-typedef	struct			s_player
-{
-	float				x;
-	float				z;
-	float				dir;
-}						t_player;
-
-/*
-**	mlx_p: 				MiniLibX pointer
-**	mlx_w:				MiniLibX window
-**	t_player:			struct player
-**	t_setting:			struct settings
-*/
-
 typedef struct			s_game
 {
 	void				*mlx;
@@ -103,10 +74,8 @@ typedef struct			s_game
 	int					screen;
 	int					width;
 	int					height;
-	t_player			player;
-	t_textures			textures[5];
+	int					conf;
 	t_color				*colors[2];
-	char				**map;
 }						t_game;
 
 /*
@@ -114,11 +83,15 @@ typedef struct			s_game
 */
 
 int						main(int argsc, char **args);
+void					exit_programs(t_game *vars, char *str);
+
 
 /*
 ** 	srcs/parser.c
 */
 
-void					parse(t_game *vars, int argc, char **args);
+int						parse(t_game *vars, int argc, char **args);
+void					parse_configuration(t_game *vars, int fd);
+
 
 #endif

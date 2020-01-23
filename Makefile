@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/30 21:50:12 by amonteli     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/16 03:40:48 by amonteli    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/23 02:41:30 by amonteli    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -62,7 +62,9 @@ LIBFT_SRCS	=		ft_atoi.c				\
 					ft_lstmap.c				\
 
 SRCS 		=		cub3d.c					\
-					parser.c				\
+					parser/parser.c			\
+					parser/conf_parser.c	\
+					parser/map_parser.c		\
 
 FLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
 
@@ -81,7 +83,7 @@ $(NAME)		: $(OBJS)
 
 %.o: %.c $(HEADERS) libft/libft.h
 		@gcc -I $(HEADERS) -I $(LIBFT_INC) -o $@ -c $< $(FLAGS)
-		@echo "\033[34m█\c\033[0m"
+		@echo "\033[34mCompiled $<\033[0m"
 
 bonus		:		$(NAME)
 
@@ -98,4 +100,24 @@ fclean		:		clean
 re			:		fclean all
 
 norme		:
-		@norminette srcs/*.c srcs/bonus/*.c includes/*.h libft/*.c libft/*.h
+		clear
+		@echo "\033[90m_________________________________________________________\n"
+		@echo "\t\t\t\033[34mLibft\n"
+		@norminette libft/*.c libft/*.h | grep Norme
+		@echo "\033[91m"
+		@-norminette libft/*.c libft/*.h | grep -B 1 Error
+		@echo "\033[90m_________________________________________________________\n"
+		@echo "\t\t\t\033[34mHeaders\n"
+		@norminette includes/*.h | grep Norme
+		@echo "\033[91m"
+		@-norminette includes/*.h | grep -B 1 Error
+		@echo "\033[90m_________________________________________________________\n"
+		@echo "\t\t\t\033[34mParser\n"
+		@-norminette srcs/parser/*.c | grep Norme
+		@echo "\033[91m"
+		@-norminette srcs/parser/*.c | grep -B 1 Error
+		@echo "\033[90m_________________________________________________________\n"
+		@echo "\t\t\t\033[34mSources\n"
+		@-norminette srcs/*.c | grep Norme
+		@echo "\033[91m"
+		@-norminette srcs/*.c | grep -B 1 Error

@@ -1,7 +1,3 @@
-
-
-
-
 R 1920 1080
 
 NO ./textures/pikachu.xpm
@@ -14,7 +10,7 @@ EA ./path_to_the_east_texture
 
 S ./path_to_the_sprite_texture
 
-F 255, 55, 55
+F 255, 51, 52
 
 C 225, 30, 170
 
