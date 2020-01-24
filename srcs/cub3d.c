@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 06:53:37 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 05:38:18 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,8 +56,10 @@ static inline	void		check_params(t_game *vars, int argc, char **args)
 void						debug_parser(t_game *vars)
 {
 	printf("[R] Width=%d, Height=%d\n", vars->width, vars->height);
-	printf("[F] R=%d, G=%d, B=%d\n", vars->colors[FLOOR]->rgb.r, vars->colors[FLOOR]->rgb.g, vars->colors[FLOOR]->rgb.b);
+	printf("[F] R=%d, G=%d, B=%d\n", vars->colors[FLOOR].rgb.r, vars->colors[FLOOR].rgb.g, vars->colors[FLOOR].rgb.b);
+	printf("[C] R=%d, G=%d, B=%d\n", vars->colors[SKY].rgb.r, vars->colors[SKY].rgb.g, vars->colors[SKY].rgb.b);
 }
+
 int							main(int argsc, char **args)
 {
 	t_game		*vars;
@@ -65,7 +67,7 @@ int							main(int argsc, char **args)
 	if (!(vars = init_vars()))
 		return (0);
 	check_params(vars, argsc, args);
-	parse(vars, argsc, args);
+	parse(vars, args);
 	debug_parser(vars);
 	return (0);
 }

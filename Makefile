@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/30 21:50:12 by amonteli     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/23 02:41:30 by amonteli    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/24 05:13:27 by amonteli    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -65,6 +65,7 @@ SRCS 		=		cub3d.c					\
 					parser/parser.c			\
 					parser/conf_parser.c	\
 					parser/map_parser.c		\
+					utils/utilities.c		\
 
 FLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
 
@@ -121,3 +122,8 @@ norme		:
 		@-norminette srcs/*.c | grep Norme
 		@echo "\033[91m"
 		@-norminette srcs/*.c | grep -B 1 Error
+		@echo "\033[90m_________________________________________________________\n"
+		@echo "\t\t\t\033[34mUtilities\n"
+		@-norminette srcs/utils/*.c | grep Norme
+		@echo "\033[91m"
+		@-norminette srcs/utils/*.c | grep -B 1 Error

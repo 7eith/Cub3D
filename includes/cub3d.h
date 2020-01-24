@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 04:41:30 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/24 05:40:40 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,6 +49,15 @@ enum					e_colored_textures
 	SKY
 };
 
+enum					e_textures
+{
+	NORTH,
+	WEST,
+	SOUTH,
+	EAST,
+	SPRITE
+};
+
 /*
 **	union for get RGB color
 **	assign color by t_color.rgb.KEY = INT;
@@ -75,7 +84,8 @@ typedef struct			s_game
 	int					width;
 	int					height;
 	int					conf;
-	t_color				*colors[2];
+	t_color				colors[2];
+	char				*paths[5];
 }						t_game;
 
 /*
@@ -85,13 +95,17 @@ typedef struct			s_game
 int						main(int argsc, char **args);
 void					exit_programs(t_game *vars, char *str);
 
-
 /*
 ** 	srcs/parser.c
 */
 
-int						parse(t_game *vars, int argc, char **args);
+void					parse(t_game *vars, char **args);
 void					parse_configuration(t_game *vars, int fd);
 
+/*
+**	srcs/utils/utilities.c
+*/
+
+t_color					create_color(int r, int g, int b);
 
 #endif
