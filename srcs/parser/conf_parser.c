@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 01:24:23 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/25 05:04:35 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/25 07:57:23 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,8 +92,25 @@ void			parse_value(t_game *vars, char *line)
 		return (parse_textures(vars, line + 3, EAST));
 	else if (*line == 'S' && line[1] == ' ')
 		return (parse_textures(vars, line + 2, SPRITE));
+	else if (*line == '1')
+		exit_programs(vars, "Missing keys in configurations before map!");
 	else
 		exit_programs(vars, "Invalid keys!");
+}
+
+int				is_valid_configurations(t_game *vars)
+{
+	int			index;
+
+	index = 0;
+	if (vars->width == -1 || vars->height == -1)
+		return (0);
+	if (!(vars->conf & C) || !(vars->conf & F))
+		return (0);
+	while (index < TEXTURES)
+		if (!vars->paths[index++])
+			return (0);
+	return (1);
 }
 
 void			parse_configuration(t_game *vars, int fd)
@@ -101,10 +118,9 @@ void			parse_configuration(t_game *vars, int fd)
 	char			*line;
 	int				ret;
 
-	while ((ret = get_next_line(fd, &line)))
+	while ((ret = get_next_line(fd, &line)) && !is_valid_configurations(vars))
 	{
-		if (*line != '1')
-			parse_value(vars, line);
+		parse_value(vars, line);
 		free(line);
 	}
 	if (ret == -1)

@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/25 02:48:28 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/25 07:53:19 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,7 @@
 # include "../mlx/mlx.h"
 
 # define TEXTURES 5
+# define MAP_FLAGS "NSWE201 "
 
 /*
 **	Configurations key in map.cub
@@ -96,6 +97,9 @@ typedef struct			s_game
 	int					conf;
 	t_color				colors[2];
 	char				*paths[5];
+	char				**map;
+	int					map_width;
+	int					map_height;
 }						t_game;
 
 /*
@@ -111,6 +115,7 @@ void					exit_programs(t_game *vars, char *str);
 
 void					parse(t_game *vars, char **args);
 void					parse_configuration(t_game *vars, int fd);
+void					parse_map(t_game *vars, int fd);
 
 /*
 **	srcs/utils/utilities.c
