@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 05:38:18 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/25 02:52:52 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,13 +20,19 @@
 static inline t_game		*init_vars(void)
 {
 	t_game		*vars;
+	int			index;
 
+	index = 0;
 	if (!(vars = malloc(sizeof(t_game))))
 		return (NULL);
 	vars->width = 0;
 	vars->height = 0;
 	vars->conf = 0;
 	vars->screen = 0;
+	vars->width = -1;
+	vars->height = -1;
+	while (index < TEXTURES)
+		vars->paths[index++] = NULL;
 	return (vars);
 }
 
@@ -55,9 +61,14 @@ static inline	void		check_params(t_game *vars, int argc, char **args)
 
 void						debug_parser(t_game *vars)
 {
-	printf("[R] Width=%d, Height=%d\n", vars->width, vars->height);
-	printf("[F] R=%d, G=%d, B=%d\n", vars->colors[FLOOR].rgb.r, vars->colors[FLOOR].rgb.g, vars->colors[FLOOR].rgb.b);
-	printf("[C] R=%d, G=%d, B=%d\n", vars->colors[SKY].rgb.r, vars->colors[SKY].rgb.g, vars->colors[SKY].rgb.b);
+	printf("[R]  Width=%d, Height=%d\n", vars->width, vars->height);
+	printf("[F]  R=%d, G=%d, B=%d\n", vars->colors[FLOOR].rgb.r, vars->colors[FLOOR].rgb.g, vars->colors[FLOOR].rgb.b);
+	printf("[C]  R=%d, G=%d, B=%d\n", vars->colors[SKY].rgb.r, vars->colors[SKY].rgb.g, vars->colors[SKY].rgb.b);
+	printf("[NO] Path=%s\n", vars->paths[NORTH]);
+	printf("[SO] Path=%s\n", vars->paths[SOUTH]);
+	printf("[WE] Path=%s\n", vars->paths[WEST]);
+	printf("[EA] Path=%s\n", vars->paths[EAST]);
+	printf("[S]  Path=%s\n", vars->paths[SPRITE]);
 }
 
 int							main(int argsc, char **args)

@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 01:24:23 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 22:35:48 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/25 05:04:35 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 void			parse_resolution(t_game *vars, char *line)
 {
-	if (vars->conf & R)
+	if (vars->width != -1 || vars->height != -1)
 		exit_programs(vars, "Resolution already parsed.");
 	vars->width = ft_atoi(line);
 	vars->height = ft_atoi(line + ft_numlen(vars->width));
@@ -55,31 +55,45 @@ void			parse_color(t_game *vars, char *line, int type)
 	vars->conf |= type ? C : F;
 }
 
-void			parse_paths(t_game *vars, char *line, int type)
+void			parse_textures(t_game *vars, char *line, int type)
 {
-	if (vars->conf & T_NO || vars->conf & T_EA || vars->conf & T_SO || vars->conf & T_WE || vars->conf & T_S)
+	int			opened_fd;
+
+	if (vars->paths[type] != NULL)
 		exit_programs(vars, "Textures has double entry!");
-	if (open(line, O_RDONLY) == -1)
+	opened_fd = open(line, O_RDONLY);
+	if (opened_fd == -1)
 		exit_programs(vars, "Texture not existing!");
-	printf("%d\n", open(line, O_RDONLY));
-	printf("line={%s}\n", line);
+	close(opened_fd);
+	vars->paths[type] = ft_strdup(line);
 }
 
 void			parse_value(t_game *vars, char *line)
 {
 	if ((*line == ' ' || !*line) && !vars->conf)
 		exit_programs(vars, "Empty lines at the beginning of the file..");
-	else if (*line == ' ')
+	if (*line == ' ' || !*line)
 		while (*line)
-			*line == ' ' ? line++ : exit_programs(vars, "Empty line not correctly formated.");
+			*line == ' ' ? line++ :
+			exit_programs(vars, "Empty line not correctly formated.");
 	else if (*line == 'R' && line[1] == ' ')
-		parse_resolution(vars, line + 2);
+		return (parse_resolution(vars, line + 2));
 	else if (*line == 'F' && line[1] == ' ')
-		parse_color(vars, line + 2, FLOOR);
+		return (parse_color(vars, line + 2, FLOOR));
 	else if (*line == 'C' && line[1] == ' ')
-		parse_color(vars, line + 2, SKY);
+		return (parse_color(vars, line + 2, SKY));
 	else if (*line == 'N' && line[1] == 'O' && line[2] == ' ')
-		parse_paths(vars, line + 3, NORTH);
+		return (parse_textures(vars, line + 3, NORTH));
+	else if (*line == 'S' && line[1] == 'O' && line[2] == ' ')
+		return (parse_textures(vars, line + 3, SOUTH));
+	else if (*line == 'W' && line[1] == 'E' && line[2] == ' ')
+		return (parse_textures(vars, line + 3, WEST));
+	else if (*line == 'E' && line[1] == 'A' && line[2] == ' ')
+		return (parse_textures(vars, line + 3, EAST));
+	else if (*line == 'S' && line[1] == ' ')
+		return (parse_textures(vars, line + 2, SPRITE));
+	else
+		exit_programs(vars, "Invalid keys!");
 }
 
 void			parse_configuration(t_game *vars, int fd)
@@ -89,7 +103,8 @@ void			parse_configuration(t_game *vars, int fd)
 
 	while ((ret = get_next_line(fd, &line)))
 	{
-		parse_value(vars, line);
+		if (*line != '1')
+			parse_value(vars, line);
 		free(line);
 	}
 	if (ret == -1)

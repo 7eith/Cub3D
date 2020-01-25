@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/24 05:40:40 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/25 02:48:28 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,8 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+
+# define TEXTURES 5
 
 /*
 **	Configurations key in map.cub
@@ -75,6 +77,14 @@ typedef union			u_color
 		unsigned char	a;
 	}					rgb;
 }						t_color;
+
+typedef	struct			s_textures
+{
+	int					width;
+	int					height;
+	void				*img;
+	int					*data;
+}						t_textures;
 
 typedef struct			s_game
 {
