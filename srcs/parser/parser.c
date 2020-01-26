@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 22:14:42 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/25 07:53:08 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/26 07:56:28 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,8 @@ void			parse(t_game *vars, char **args)
 	int			fd;
 
 	fd = open(args[1], O_RDONLY);
+	if (fd == -1)
+		exit_programs(vars, "Failed to read file!");
 	parse_configuration(vars, fd);
-	parse_map(vars, fd);
+	read_map(vars, fd);
 }

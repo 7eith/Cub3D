@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/25 06:38:59 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/26 07:51:50 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,8 @@ static inline t_game		*init_vars(void)
 	vars->height = -1;
 	vars->map_width = -1;
 	vars->map_height = -1;
+	vars->map_buf = NULL;
+	vars->map = NULL;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);
@@ -71,6 +73,13 @@ void						debug_parser(t_game *vars)
 	printf("[WE] Path=%s\n", vars->paths[WEST]);
 	printf("[EA] Path=%s\n", vars->paths[EAST]);
 	printf("[S]  Path=%s\n", vars->paths[SPRITE]);
+
+	int		index;
+
+	index = 0;
+	if (vars->map)
+		while (vars->map[index])
+			printf("{%s}\n", vars->map[index++]);
 }
 
 int							main(int argsc, char **args)

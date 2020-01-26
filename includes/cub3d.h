@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/25 07:53:19 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/26 07:56:36 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,6 +98,7 @@ typedef struct			s_game
 	t_color				colors[2];
 	char				*paths[5];
 	char				**map;
+	char				*map_buf;
 	int					map_width;
 	int					map_height;
 }						t_game;
@@ -115,7 +116,7 @@ void					exit_programs(t_game *vars, char *str);
 
 void					parse(t_game *vars, char **args);
 void					parse_configuration(t_game *vars, int fd);
-void					parse_map(t_game *vars, int fd);
+void					read_map(t_game *vars, int fd);
 
 /*
 **	srcs/utils/utilities.c
