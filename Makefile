@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/30 21:50:12 by amonteli     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/25 02:35:52 by amonteli    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/29 02:10:07 by amonteli    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -66,6 +66,8 @@ SRCS 		=		cub3d.c					\
 					parser/conf_parser.c	\
 					parser/map_parser.c		\
 					utils/utilities.c		\
+					ui/raycast.c			\
+					ui/window.c				\
 
 FLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
 

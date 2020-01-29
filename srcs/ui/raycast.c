@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parser.c                                         .::    .:/ .      .::   */
+/*   raycast.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/30 22:14:42 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 02:05:12 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/29 02:04:59 by amonteli     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/29 05:43:14 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void			parse(t_game *vars, char **args)
+void						debug_ui(t_game *vars)
 {
-	int			fd;
+	printf("[Position]  X=%f, Y=%f\n", vars->posX, vars->posY);
+}
 
-	fd = open(args[1], O_RDONLY);
-	if (fd == -1)
-		exit_programs(vars, "Failed to read file!");
-	parse_configuration(vars, fd);
-	read_map(vars, fd);
+int				raycast(t_game *vars)
+{
+	int		x = 0;			// raycast index (for send x pixels)
+	int		y = 50;
+	int		angle = 0;
+
+	while (x < vars->width)
+	{
+		// printf("X=%d\n", x);
+		mlx_pixel_put(vars->mlx, vars->window, x, y, vars->colors[SKY].c);
+		x++;
+	}
+	return (1);
 }

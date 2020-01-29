@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 01:24:26 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/26 07:56:23 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 02:02:52 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,7 @@ void				assign_map(t_game *vars, int fd, char *line)
 		vars->map_buf = ft_strjoin_free(vars->map_buf, line, 2);
 		free(line);
 	}
+	printf("map_buf={\n%s}\n", vars->map_buf);
 	vars->map = ft_split(vars->map_buf, '\n');
 	free(vars->map_buf);
 }

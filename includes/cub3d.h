@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/26 07:56:36 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 05:43:56 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
@@ -101,6 +102,10 @@ typedef struct			s_game
 	char				*map_buf;
 	int					map_width;
 	int					map_height;
+	float				posX;
+	float 				posY;
+	float				raydirX;
+	float				raydirY;
 }						t_game;
 
 /*
@@ -123,5 +128,19 @@ void					read_map(t_game *vars, int fd);
 */
 
 t_color					create_color(int r, int g, int b);
+
+
+/*
+**	srcs/ui/raycast.c
+*/
+
+int						raycast(t_game *vars);
+
+
+/*
+** 	srcs/ui/window.c
+*/
+
+int						open_window(t_game *vars);
 
 #endif
