@@ -6,14 +6,14 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 02:07:43 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 05:49:16 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 06:10:30 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void			close_window(t_game *vars)
+int				close_window(t_game *vars)
 {
 	exit(1);
 }
