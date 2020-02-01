@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 01:24:23 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/26 05:52:54 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/01 08:18:10 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,11 +37,11 @@ void			parse_color(t_game *vars, char *line, int type)
 	r = ft_atoi(line);
 	while (ft_isdigit(*line) || *line == ' ')
 		line++;
-	*line == ',' ? line++ : exit_programs(vars, "Empty line not correctly formated.");
+	*line == ',' ? line++ : exit_programs(vars, "RGB not correctly formated");
 	g = ft_atoi(line);
 	while (ft_isdigit(*line) || *line == ' ')
 		line++;
-	*line == ',' ? line++ : exit_programs(vars, "Empty line not correctly formated.");
+	*line == ',' ? line++ : exit_programs(vars, "RGB not correctly formated");
 	b = ft_atoi(line);
 	while (*line == ' ')
 		line++;

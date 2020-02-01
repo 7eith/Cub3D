@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 01:24:26 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/30 11:33:52 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/01 08:17:06 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,19 +15,23 @@
 
 void				check_map_line(t_game *vars, char *line, int size)
 {
-	int				walls;
+	int				items;
+	int				i;
 
-	walls = 0;
-	if (*line != '1')
-	while (*line)
+	items = 0;
+	i = 0;
+	while (line[i])
 	{
-		// if (*line != '1' || *line != ' ')
-		if (*line == '1')
-			walls++;
-
+		if (!ft_strchr(MAP_FLAGS, line[i]))
+			exit_programs(vars, "Invalid char in map!");
+		if (line[i] != ' ')
+			items++;
+		i++;
 	}
-	if (walls != size)
+	if (items != size)
 		exit_programs(vars, "Map is not rectangular!");
+	if (line[i - 1] != '1')
+		exit_programs(vars, "Map not closed at right!");
 }
 
 void				check_map(t_game *vars)
@@ -40,19 +44,16 @@ void				check_map(t_game *vars)
 	while (vars->map[0][index])
 	{
 		if (vars->map[0][index] != '1' && vars->map[0][index] != ' ')
-			vars->map[0][index] == '0' ? exit_programs(vars, "Map not closed at top!") : exit_programs(vars, "Invalid char at the first line of the map!");
+			exit_programs(vars, "Invalid map (TOP)");
 		if (vars->map[0][index] == '1')
 			walls++;
 		index++;
 	}
 	if (vars->map[0][index - 1] != '1')
 		exit_programs(vars, "Line not ending with a walls!");
-	while (vars->map[index]) // segfault here, split zobed?
-	{
-		check_map_line(vars, vars->map[index], walls);
-		index++;
-	}
-	printf("walls_size={%d}\n", walls);
+	index = 0;
+	while (vars->map[index])
+		check_map_line(vars, vars->map[index++], walls);
 }
 
 void				assign_map(t_game *vars, int fd, char *line)
@@ -82,14 +83,15 @@ void				read_map(t_game *vars, int fd)
 	{
 		if (*line == ' ')
 			while (*line)
-				*line == ' ' ? line++ : exit_programs(vars, "Spaces not at good place!"); // ternary for more verbosed printf
+				*line == ' ' ? line++ :
+				exit_programs(vars, "Spaces not at good place!");
 		if (*line != '1')
 		{
 			free(line);
 			exit_programs(vars, "Map left not closed!");
 		}
 		if (*line == '1')
-			break;
+			break ;
 	}
 	if (ret == -1)
 		exit_programs(vars, "Failed to read map.");

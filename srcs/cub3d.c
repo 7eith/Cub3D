@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 05:49:35 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/01 05:13:07 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,14 +31,9 @@ static inline t_game		*init_vars(void)
 	vars->screen = 0;
 	vars->width = -1;
 	vars->height = -1;
-	vars->map_width = -1;
-	vars->map_height = -1;
 	vars->map_buf = NULL;
 	vars->map = NULL;
-	vars->posX = 0.00;
-	vars->posY = 0.00;
-	vars->raydirX = -1;
-	vars->raydirY = 0.00;
+	vars->start_dir = -1;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);
