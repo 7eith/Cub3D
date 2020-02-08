@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/01 08:15:55 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 06:51:04 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,7 +100,43 @@ typedef struct			s_game
 	char				*paths[5];
 	char				**map;
 	char				*map_buf;
-	int					start_dir;
+
+	// MLX
+	void				*img;
+	int					*img_data;
+
+	// Raycasting
+	float				posX;
+	float				posY;
+	double				dirX;
+	double				dirY;
+	double				planeX;
+	double				planeY;
+
+	double				cameraX;
+
+	double				raydirX;
+	double				raydirY;
+
+	int					mapX;
+	int					mapY;
+
+	double				sidedistX;
+	double				sidedistY;
+	double				deltadistX;
+	double				deltadistY;
+	double				perpwalldist;
+
+	int					stepX;
+	int					stepY;
+	int					hit;
+	int					side;
+
+	int					lineheight;
+	int					drawstart;
+	int					drawend;
+
+	int					x;
 }						t_game;
 
 /*
@@ -117,6 +153,7 @@ void					exit_programs(t_game *vars, char *str);
 void					parse(t_game *vars, char **args);
 void					parse_configuration(t_game *vars, int fd);
 void					read_map(t_game *vars, int fd);
+void					check_map(t_game *vars);
 
 /*
 **	srcs/utils/utilities.c

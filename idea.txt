@@ -1,6 +1,0 @@
-
-
-
-Parsing :
-
-Alors, avoir une fonction qui s'occupe de toutes les erreurs, creer un enum d'erreur.
