@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 06:51:04 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/09 08:20:01 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -101,13 +101,11 @@ typedef struct			s_game
 	char				**map;
 	char				*map_buf;
 
-	// MLX
 	void				*img;
 	int					*img_data;
 
-	// Raycasting
-	float				posX;
-	float				posY;
+	double				posX;
+	double				posY;
 	double				dirX;
 	double				dirY;
 	double				planeX;

@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 02:07:43 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 06:44:41 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/09 07:51:37 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,11 +17,11 @@ int				key_press(int key, t_game *vars)
 {
 	if (key == 126)
 	{
-		vars->posX += vars->dirX * 0.50;
+		vars->posX += vars->dirX * 2;
 	}
 	if (key == 125)
 	{
-		vars->posX -= vars->dirX * 5;
+		vars->posX -= vars->dirX * 2;
 	}
 }
 

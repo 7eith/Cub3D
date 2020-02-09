@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 22:14:42 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 06:51:27 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/09 07:46:10 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,5 +48,12 @@ void			parse(t_game *vars, char **args)
 	read_map(vars, fd);
 	check_map(vars);
 	assign_assets(vars);
-	dprintf(1, "found assets x=%f, y=%f\n", vars->posX, vars->posY);
+	// dprintf(1, "found assets x=%f, y=%f\n", vars->posX, vars->posY);
+	close(fd);
+	fd = 0;
+	while (vars->map[fd])
+	{
+		printf("%s\n", vars->map[fd]);
+		fd++;
+	}
 }
