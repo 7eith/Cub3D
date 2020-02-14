@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/30 21:54:50 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 08:16:30 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 05:45:30 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,6 +34,8 @@ static inline t_game		*init_vars(void)
 	vars->map_buf = NULL;
 	vars->map = NULL;
 
+	vars->mapX = 0;
+	vars->mapY = 0;
 	vars->posX = -1;
 	vars->posY = -1;
 	vars->dirX = -1;
@@ -70,6 +72,8 @@ static inline	void		check_params(t_game *vars, int argc, char **args)
 
 void						debug_parser(t_game *vars)
 {
+
+	printf("_______________________________________________\n\n");
 	printf("[R]  Width=%d, Height=%d\n", vars->width, vars->height);
 	printf("[F]  R=%d, G=%d, B=%d\n", vars->colors[FLOOR].rgb.r, vars->colors[FLOOR].rgb.g, vars->colors[FLOOR].rgb.b);
 	printf("[C]  R=%d, G=%d, B=%d\n", vars->colors[SKY].rgb.r, vars->colors[SKY].rgb.g, vars->colors[SKY].rgb.b);
@@ -79,12 +83,17 @@ void						debug_parser(t_game *vars)
 	printf("[EA] Path=%s\n", vars->paths[EAST]);
 	printf("[S]  Path=%s\n", vars->paths[SPRITE]);
 
+	printf("_______________________________________________\n\n");
 	int		index;
 
 	index = 0;
 	if (vars->map)
 		while (vars->map[index])
 			printf("{%s}\n", vars->map[index++]);
+
+	printf("_______________________________________________\n\n");
+
+	printf("[POS] x=%f, y=%f\n", vars->posX, vars->posY);
 }
 
 int							main(int argsc, char **args)

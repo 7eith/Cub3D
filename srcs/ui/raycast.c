@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 02:04:59 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 08:35:00 by amonteli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 05:58:18 by amonteli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,7 @@ void			perform_dda(t_game *vars)
 		vars->mapY += vars->stepY;
 		vars->side = 1;
 	}
-	if (vars->map[vars->mapY][vars->mapX] == '1')
+	if (vars->map[vars->mapX][vars->mapY] == '1')
 		vars->hit = 1;
 }
 
@@ -41,6 +41,7 @@ void			raycast_init_values(t_game *vars)
 	vars->deltadistX = fabs(1 / vars->raydirX);
 	vars->deltadistY = fabs(1 / vars->raydirY);
 	vars->hit = 0;
+	printf("[Map] x=%d, y=%d\n", vars->mapX, vars->mapY);
 }
 
 void			set_pixels(t_game *vars)
@@ -57,7 +58,7 @@ void			set_pixels(t_game *vars)
 	i = vars->drawend;
 	while (i < vars->height)	// sol? wtf
 	{
-		vars->img_data[i * vars->width + (int)vars->x] = 0xFF0000;
+		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[SKY].c;
 		i++;
 	}
 	while (i < vars->height - 1)
