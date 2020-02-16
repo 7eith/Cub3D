@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   parser.c                                         .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/30 22:14:42 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 05:41:14 by amonteli    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/30 22:14:42 by amonteli          #+#    #+#             */
+/*   Updated: 2020/02/15 17:21:55 by amonteli         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/cub3d.h"
 
@@ -27,8 +27,8 @@ void			assign_assets(t_game *vars)
 		{
 			if (ft_strchr("NSWE", vars->map[x][y]))
 			{
-				vars->posX = (double)x + 0.5;
-				vars->posY = (double)y + 0.5;
+				vars->posX = (float)x + 0.5;
+				vars->posY = (float)y + 0.5;
 				break;
 			}
 			y++;

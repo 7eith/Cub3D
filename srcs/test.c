@@ -1,12 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
+
+
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 21:54:50 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/17 00:52:23 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/14 18:21:06 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static inline t_game		*init_vars(void)
 	vars->posY = -1;
 	vars->dirX = -1;
 	vars->dirY = 0;
-	vars->planeX = 0;
-	vars->planeY = -0.66f;
+	vars->planeX = 0.20;
+	vars->planeY = 0;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);
@@ -72,7 +72,6 @@ static inline	void		check_params(t_game *vars, int argc, char **args)
 
 void						debug_parser(t_game *vars)
 {
-
 	printf("_______________________________________________\n\n");
 	printf("[R]  Width=%d, Height=%d\n", vars->width, vars->height);
 	printf("[F]  R=%d, G=%d, B=%d\n", vars->colors[FLOOR].rgb.r, vars->colors[FLOOR].rgb.g, vars->colors[FLOOR].rgb.b);

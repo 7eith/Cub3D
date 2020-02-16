@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   cub3d.h                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/30 21:55:06 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 08:20:01 by amonteli    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/30 21:55:06 by amonteli          #+#    #+#             */
+/*   Updated: 2020/02/17 00:39:02 by amonteli         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -104,26 +104,26 @@ typedef struct			s_game
 	void				*img;
 	int					*img_data;
 
-	double				posX;
-	double				posY;
-	double				dirX;
-	double				dirY;
-	double				planeX;
-	double				planeY;
+	float				posX;
+	float				posY;
+	float				dirX;
+	float				dirY;
+	float				planeX;
+	float				planeY;
 
-	double				cameraX;
+	float				cameraX;
 
-	double				raydirX;
-	double				raydirY;
+	float				raydirX;
+	float				raydirY;
 
 	int					mapX;
 	int					mapY;
 
-	double				sidedistX;
-	double				sidedistY;
-	double				deltadistX;
-	double				deltadistY;
-	double				perpwalldist;
+	float				sidedistX;
+	float				sidedistY;
+	float				deltadistX;
+	float				deltadistY;
+	float				perpwalldist;
 
 	int					stepX;
 	int					stepY;
@@ -135,6 +135,7 @@ typedef struct			s_game
 	int					drawend;
 
 	int					x;
+	int					wall_height;
 }						t_game;
 
 /*
@@ -158,6 +159,7 @@ void					check_map(t_game *vars);
 */
 
 t_color					create_color(int r, int g, int b);
+float					ft_fabs(float number);
 
 /*
 **	srcs/ui/raycast.c
