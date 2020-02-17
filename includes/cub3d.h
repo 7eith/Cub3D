@@ -6,10 +6,9 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 21:55:06 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/17 00:39:02 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 02:38:39 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -134,7 +133,7 @@ typedef struct			s_game
 	int					drawstart;
 	int					drawend;
 
-	int					x;
+	float				x;
 	int					wall_height;
 }						t_game;
 

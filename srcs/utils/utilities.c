@@ -6,10 +6,9 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 05:10:26 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/15 17:22:31 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 01:28:17 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/cub3d.h"
 

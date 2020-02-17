@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:04:59 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/17 00:54:26 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 05:10:36 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			raycast_init_values(t_game *vars)
 {
-	vars->cameraX = 2 * vars->x / (float)vars->width - 1;
+	vars->cameraX = 2 * vars->x / (float)(vars->width - 1);
 	vars->raydirX = vars->dirX + vars->planeX * vars->cameraX;
 	vars->raydirY = vars->dirY + vars->planeY * vars->cameraX;
 	vars->mapX = (int)vars->posX;
@@ -24,7 +24,7 @@ void			raycast_init_values(t_game *vars)
 	vars->hit = 0;
 }
 
-void			get_steps(t_game *vars)
+void			raycast_get_steps(t_game *vars)
 {
 	if (vars->raydirX < 0)
 	{
@@ -48,7 +48,7 @@ void			get_steps(t_game *vars)
 	}
 }
 
-void			perform_dda(t_game *vars)
+void			raycast_hit(t_game *vars)
 {
 	while (!vars->hit)
 	{
@@ -66,25 +66,42 @@ void			perform_dda(t_game *vars)
 		}
 		if (vars->map[vars->mapY][vars->mapX] == '1')
 			vars->hit = 1;
-		if (vars->side == 0)
-		{
-			if (vars->mapX < vars->posX)
-				vars->side = 1;
-		}
-		else
-		{
-			if (vars->mapY < vars->posY)
-				vars->side = 3;
-		}
+	}
+	if (vars->side == 0)
+	{
+		if (vars->mapX < vars->posX)
+			vars->side = 1;
+	}
+	else
+	{
+		if (vars->mapY < vars->posY)
+			vars->side = 3;
 	}
 }
 
-void			set_pixels(t_game *vars)
+void			raycast_get_values(t_game *vars)
 {
-	int			i;
+	if (vars->side == 0 || vars->side == 1)
+		vars->perpwalldist = (vars->mapX - vars->posX + (1 - vars->stepX) / 2) / vars->raydirX;
+	else
+		vars->perpwalldist = (vars->mapY - vars->posY + (1 - vars->stepY) / 2) / vars->raydirY;
+
+	vars->lineheight = (long int)(vars->wall_height / vars->perpwalldist);
+
+	vars->drawstart = -vars->lineheight / 2 + vars->wall_height / 2;
+	if (vars->drawstart < 0)
+		vars->drawstart = 0;
+
+	vars->drawend = vars->lineheight / 2 + vars->wall_height / 2;
+
+	if (vars->drawend >= vars->height)
+		vars->drawend = vars->height - 1;
+}
+
+void			raycast_draw_walls(t_game *vars)
+{
 	int			color;
 
-	i = 0;
 	color = 0x0CFF00;
 	if (vars->side == 1)
 		color = 0xFF0000; // red
@@ -92,20 +109,28 @@ void			set_pixels(t_game *vars)
 		color = 0x0012FF; // red
 	if (vars->side == 3)
 		color = 0x8D00FF; // red
-	while (i < vars->drawstart)//add draw start
-	{
-		vars->img_data[i * vars->width + (int)vars->x] = color;
-		i++;
-	}
 	while (vars->drawstart < vars->drawend)	// sol? wtf
 	{
 		vars->img_data[vars->drawstart * vars->width + (int)vars->x] = color;
 		vars->drawstart++;
 	}
-	i = vars->drawend;
-	while (i < vars->height - 1)
+}
+
+void			raycast_draw(t_game *vars)
+{
+	int			i;
+
+	i = 0;
+	while (i < vars->drawstart)	// Floor
 	{
-		vars->img_data[i * vars->width + (int)vars->x] = color;
+		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[FLOOR].c;
+		i++;
+	}
+	raycast_draw_walls(vars);
+	i = vars->drawend;
+	while (i < vars->height - 1) // Sky
+	{
+		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[SKY].c;
 		i++;
 	}
 }
@@ -117,26 +142,11 @@ int				raycast(t_game *vars)
 	while (vars->x < vars->width)
 	{
 		raycast_init_values(vars);
-		get_steps(vars);
-		perform_dda(vars);
-
-		if (vars->side == 0 || vars->side == 1)
-			vars->perpwalldist = (vars->mapX - vars->posX + (1 - vars->stepX) / 2) / vars->raydirX;
-		else
-			vars->perpwalldist = (vars->mapY - vars->posY + (1 - vars->stepY) / 2) / vars->raydirY;
-
-		vars->lineheight = (long int)(vars->wall_height / vars->perpwalldist);
-
-		vars->drawstart = -vars->lineheight / 2 + vars->wall_height / 2;
-
-		if (vars->drawstart < 0)
-			vars->drawstart = 0;
-
-		vars->drawend = vars->lineheight / 2 + vars->wall_height / 2;
-
-		if (vars->drawend >= vars->height)
-			vars->drawend = vars->height - 1;
-		set_pixels(vars);
+		raycast_get_steps(vars);
+		raycast_hit(vars);
+		raycast_get_values(vars);
+		raycast_draw(vars);
+		printf("posX = %f, posY = %f, side=%d\n", vars->posX, vars->posY, vars->side);
 		vars->x++;
 	}
 	mlx_clear_window(vars->mlx, vars->window);

@@ -6,10 +6,9 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 21:54:50 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/17 00:52:23 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 05:09:52 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/cub3d.h"
 
@@ -34,14 +33,31 @@ static inline t_game		*init_vars(void)
 	vars->map_buf = NULL;
 	vars->map = NULL;
 
-	vars->mapX = 0;
-	vars->mapY = 0;
 	vars->posX = -1;
 	vars->posY = -1;
 	vars->dirX = -1;
 	vars->dirY = 0;
 	vars->planeX = 0;
 	vars->planeY = -0.66f;
+	vars->cameraX = 0;
+	vars->raydirX = 0;
+	vars->raydirY = 0;
+	vars->mapX = 0;
+	vars->mapY = 0;
+	vars->sidedistX = 0;
+	vars->sidedistY = 0;
+	vars->deltadistX = 0;
+	vars->deltadistY = 0;
+	vars->perpwalldist = 0;
+	vars->stepX = 0;
+	vars->stepY = 0;
+	vars->hit = 0;
+	vars->side = 0;
+	vars->lineheight = 0;
+	vars->drawstart = 0;
+	vars->drawend = 0;
+	vars->x = 0;
+	vars->wall_height = 0;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);
