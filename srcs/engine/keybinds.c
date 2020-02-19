@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 02:13:26 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/19 04:24:33 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/19 05:09:29 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void			key_manager(t_game *vars)
 		up_movement(vars);
 	if (vars->key & DOWN)
 		down_movement(vars);
+	if (vars->key & MV_LEFT)
+		left_movement(vars);
 }
 
 int				key_press(int key_code, t_game *vars)
@@ -29,7 +31,10 @@ int				key_press(int key_code, t_game *vars)
 	if (key_code == R_DOWN)
 		vars->key |= DOWN;
 	if (key_code == R_MVLEFT)
+	{
+		dprintf(1, "MV LEFT\n");
 		vars->key |= MV_LEFT;
+	}
 	if (key_code == R_MVRIGHT)
 		vars->key |= MV_RIGHT;
 	if (key_code == R_LEFT)
@@ -45,7 +50,10 @@ int				key_release(int key_code, t_game *vars)
 	if (key_code == R_DOWN)
 		vars->key &= ~DOWN;
 	if (key_code == R_MVLEFT)
+	{
+		dprintf(1, "MV LEFT\n");
 		vars->key &= ~MV_LEFT;
+	}
 	if (key_code == R_MVRIGHT)
 		vars->key &= ~MV_RIGHT;
 	if (key_code == R_LEFT)

@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   conf_parser.c                                    .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/23 01:24:23 by amonteli     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 04:56:36 by amonteli    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conf_parser.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/23 01:24:23 by amonteli          #+#    #+#             */
+/*   Updated: 2020/02/19 01:18:51 by amonteli         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
@@ -74,8 +73,7 @@ void			parse_value(t_game *vars, char *line)
 		exit_programs(vars, "Empty lines at the beginning of the file..");
 	if (*line == ' ' || !*line)
 		while (*line)
-			*line == ' ' ? line++ :
-			exit_programs(vars, "Empty line not correctly formated.");
+			*line == ' ' ? line++ : exit_programs(vars, "Error");
 	else if (*line == 'R' && line[1] == ' ')
 		return (parse_resolution(vars, line + 2));
 	else if (*line == 'F' && line[1] == ' ')
@@ -98,27 +96,12 @@ void			parse_value(t_game *vars, char *line)
 		exit_programs(vars, "Invalid keys!");
 }
 
-int				is_valid_configurations(t_game *vars)
-{
-	int			index;
-
-	index = 0;
-	if (vars->width == -1 || vars->height == -1)
-		return (0);
-	if (!(vars->conf & C) || !(vars->conf & F))
-		return (0);
-	while (index < TEXTURES)
-		if (!vars->paths[index++])
-			return (0);
-	return (1);
-}
-
 void			parse_configuration(t_game *vars, int fd)
 {
 	char			*line;
 	int				ret;
 
-	while ((ret = get_next_line(fd, &line)) && !is_valid_configurations(vars))
+	while ((ret = get_next_line(fd, &line)) && !is_valid_configuration(vars))
 	{
 		parse_value(vars, line);
 		free(line);

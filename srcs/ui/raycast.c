@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:04:59 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/17 05:10:36 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/19 04:21:38 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			raycast_hit(t_game *vars)
 			vars->mapY += vars->stepY;
 			vars->side = 2;
 		}
-		if (vars->map[vars->mapY][vars->mapX] == '1')
+		if (vars->map[vars->mapX][vars->mapY] == '1')
 			vars->hit = 1;
 	}
 	if (vars->side == 0)
@@ -135,10 +135,11 @@ void			raycast_draw(t_game *vars)
 	}
 }
 
+
 int				raycast(t_game *vars)
 {
 	vars->x = 0;
-	vars->wall_height = vars->height / 1.35; // height of a walls
+	vars->wall_height = vars->height / 1.20; // height of a walls
 	while (vars->x < vars->width)
 	{
 		raycast_init_values(vars);
@@ -146,9 +147,9 @@ int				raycast(t_game *vars)
 		raycast_hit(vars);
 		raycast_get_values(vars);
 		raycast_draw(vars);
-		printf("posX = %f, posY = %f, side=%d\n", vars->posX, vars->posY, vars->side);
 		vars->x++;
 	}
+	key_manager(vars);
 	mlx_clear_window(vars->mlx, vars->window);
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
 	return (1);

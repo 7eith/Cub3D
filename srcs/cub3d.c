@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 21:54:50 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/17 05:09:52 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/19 04:25:57 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static inline t_game		*init_vars(void)
 	vars->dirX = -1;
 	vars->dirY = 0;
 	vars->planeX = 0;
-	vars->planeY = -0.66f;
+	vars->planeY = 0.66f;
 	vars->cameraX = 0;
 	vars->raydirX = 0;
 	vars->raydirY = 0;
@@ -58,6 +58,8 @@ static inline t_game		*init_vars(void)
 	vars->drawend = 0;
 	vars->x = 0;
 	vars->wall_height = 0;
+
+	vars->key = 0;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);

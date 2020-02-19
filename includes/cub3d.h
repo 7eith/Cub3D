@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 21:55:06 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/17 02:38:39 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/02/19 04:58:01 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,27 @@ enum					e_conf
 	T_S = (1 << 5),
 	F = (1 << 6),
 	C = (1 << 7),
+};
+
+enum					e_key
+{
+	LEFT = (1 << 0),
+	RIGHT = (1 << 1),
+	UP = (1 << 2),
+	DOWN = (1 << 3),
+	MV_LEFT = (1 << 4),
+	MV_RIGHT = (1 << 5),
+};
+
+enum					e_keycode
+{
+	ESCAPE = 53,
+	R_LEFT = 123,
+	R_RIGHT = 124,
+	R_DOWN = 125,
+	R_UP = 126,
+	R_MVLEFT = 0,
+	R_MVRIGHT = 2
 };
 
 /*
@@ -135,6 +156,7 @@ typedef struct			s_game
 
 	float				x;
 	int					wall_height;
+	unsigned char		key;
 }						t_game;
 
 /*
@@ -159,6 +181,7 @@ void					check_map(t_game *vars);
 
 t_color					create_color(int r, int g, int b);
 float					ft_fabs(float number);
+int						is_valid_configuration(t_game *vars);
 
 /*
 **	srcs/ui/raycast.c
@@ -171,5 +194,21 @@ int						raycast(t_game *vars);
 */
 
 int						open_window(t_game *vars);
+
+/*
+**	srcs/ui/keybinds.c
+*/
+
+int						key_press(int key_code, t_game *vars);
+int						key_release(int key_code, t_game *vars);
+void					key_manager(t_game *vars);
+
+/*
+**	srcs/engine/movement.c
+*/
+
+void					up_movement(t_game *vars);
+void					down_movement(t_game *vars);
+void					left_movement(t_game *vars);
 
 #endif
