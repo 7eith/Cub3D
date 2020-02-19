@@ -1,15 +1,15 @@
 # **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    Makefile                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: amonteli <amonteli@student.le-101.fr>      +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/12/30 21:50:12 by amonteli     #+#   ##    ##    #+#        #
-#    Updated: 2020/02/08 00:56:02 by amonteli    ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/12/30 21:50:12 by amonteli          #+#    #+#              #
+#    Updated: 2020/02/19 04:19:19 by amonteli         ###   ########lyon.fr    #
+#                                                                              #
 # **************************************************************************** #
+
 
 NAME		=		Cub3D
 
@@ -68,6 +68,8 @@ SRCS 		=		cub3d.c					\
 					utils/utilities.c		\
 					ui/raycast.c			\
 					ui/window.c				\
+					engine/keybinds.c		\
+					engine/movement.c		\
 
 FLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
 
@@ -124,6 +126,16 @@ norme		:
 		@-norminette srcs/*.c | grep Norme
 		@echo "\033[91m"
 		@-norminette srcs/*.c | grep -B 1 Error
+		@echo "\033[90m_________________________________________________________\n"
+		@echo "\t\t\t\033[34mUI\n"
+		@-norminette srcs/ui/*.c | grep Norme
+		@echo "\033[91m"
+		@-norminette srcs/ui/*.c | grep -B 1 Error
+		@echo "\033[90m_________________________________________________________\n"
+		@echo "\t\t\t\033[34mEngine\n"
+		@-norminette srcs/engine/*.c | grep Norme
+		@echo "\033[91m"
+		@-norminette srcs/engine/*.c | grep -B 1 Error
 		@echo "\033[90m_________________________________________________________\n"
 		@echo "\t\t\t\033[34mUtilities\n"
 		@-norminette srcs/utils/*.c | grep Norme
