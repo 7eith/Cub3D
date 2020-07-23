@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:07:43 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/19 04:12:51 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/07/23 04:03:22 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				open_window(t_game *vars)
 
 	mlx_loop_hook(vars->mlx, &raycast, (void *)vars);
 	mlx_do_key_autorepeaton(vars->mlx);
-	mlx_hook(vars->window, 17, 0, &close_window, (void *)vars);
+	mlx_hook(vars->window, 33, 0, &close_window, (void *)vars);
 	mlx_hook(vars->window, 2, 0, &key_press, (void *)vars);
 	mlx_hook(vars->window, 3, 0, &key_release, (void *)vars);
 	mlx_loop(vars->mlx);
