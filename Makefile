@@ -6,12 +6,12 @@
 #    By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/30 21:50:12 by amonteli          #+#    #+#              #
-#    Updated: 2020/07/23 04:02:38 by amonteli         ###   ########lyon.fr    #
+#    Updated: 2020/07/23 04:04:20 by amonteli         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		=		Cub3D
+NAME		=		cub3D
 
 HEADERS		=		includes/cub3d.h		\
 
