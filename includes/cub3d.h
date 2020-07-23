@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 21:55:06 by amonteli          #+#    #+#             */
-/*   Updated: 2020/07/23 04:12:32 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/07/23 04:32:37 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ enum					e_key
 
 enum					e_keycode
 {
-	ESCAPE = 53,
+	ESCAPE = 65307,
 	R_LEFT = 123,
 	R_RIGHT = 124,
 	R_DOWN = 125,

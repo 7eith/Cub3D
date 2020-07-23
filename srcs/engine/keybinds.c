@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 02:13:26 by amonteli          #+#    #+#             */
-/*   Updated: 2020/07/23 04:13:14 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/07/23 08:26:24 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,43 @@ void			key_manager(t_game *vars)
 
 int				key_press(int key_code, t_game *vars)
 {
-	if (key_code == ESCAPE)
+	printf("%d\n", key_code);
+	if (key_code == 65307)
 		exit_programs(vars, "Exited successfully");
-	if (key_code == R_UP)
+	if (key_code == 119)
 		vars->key |= UP;
-	if (key_code == R_DOWN)
+	if (key_code == 115)
 		vars->key |= DOWN;
-	if (key_code == R_MVLEFT)
+	if (key_code == 97)
 	{
 		dprintf(1, "MV LEFT\n");
 		vars->key |= MV_LEFT;
 	}
-	if (key_code == R_MVRIGHT)
+	if (key_code == 100)
 		vars->key |= MV_RIGHT;
-	if (key_code == R_LEFT)
+	if (key_code == 65361)
 		vars->key |= LEFT;
-	if (key_code == R_RIGHT)
+	if (key_code == 65307)
 		vars->key |= RIGHT;
 	return (0);
 }
 
 int				key_release(int key_code, t_game *vars)
 {
-	if (key_code == R_UP)
+	if (key_code == 119)
 		vars->key &= ~UP;
-	if (key_code == R_DOWN)
+	if (key_code == 115)
 		vars->key &= ~DOWN;
-	if (key_code == R_MVLEFT)
+	if (key_code == 97)
 	{
 		dprintf(1, "MV LEFT\n");
 		vars->key &= ~MV_LEFT;
 	}
-	if (key_code == R_MVRIGHT)
+	if (key_code == 100)
 		vars->key &= ~MV_RIGHT;
-	if (key_code == R_LEFT)
+	if (key_code == 65361)
 		vars->key &= ~LEFT;
-	if (key_code == R_RIGHT)
+	if (key_code == 65307)
 		vars->key &= ~RIGHT;
 	return (0);
 }

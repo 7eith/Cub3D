@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 02:13:52 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/19 05:14:22 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/07/23 08:37:46 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ void			left_movement(t_game *vars)
 
 	dprintf(1, "Call LEFTT MOVE\n");
 	moveSpeed = 0.60;
-	x = vars->posX - vars->dirY * moveSpeed / 2;
+	x = vars->posX + vars->dirY * moveSpeed / 2;
 	y = vars->posY;
-	dprintf(1, "x=%f, y=%f, ?=%d, 2?=%d\n", x, y, vars->map[(int)(y - 0.00001)][(int)x] != '1', vars->map[(int)(y + 0.00001)][(int)x] != '1');
-	if (vars->map[(int)(y - 0.00001)][(int)x] != '1' && vars->map[(int)(y + 0.00001)][(int)x] != '1')
-	{
-		dprintf(1, "MOVE FFDP \n");
+
+	if (vars->map[(int)(x)][(int)y] == '0' || vars->map[(int)(x)][(int)y] == 'N')
 		vars->posX -= vars->dirY * moveSpeed / 2;
-	}
+	y = vars->posY - vars->dirX * moveSpeed / 2;
+	x = vars->posX;
+	if (vars->map[(int)(x)][(int)y] == '0' || vars->map[(int)(x)][(int)y] == 'N')
+		vars->posY += vars->dirX * moveSpeed / 2;
 }
