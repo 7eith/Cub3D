@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keybinds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 02:13:26 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/19 05:09:29 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/07/23 04:13:14 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int				key_press(int key_code, t_game *vars)
 		vars->key |= LEFT;
 	if (key_code == R_RIGHT)
 		vars->key |= RIGHT;
+	return (0);
 }
 
 int				key_release(int key_code, t_game *vars)
@@ -60,4 +61,5 @@ int				key_release(int key_code, t_game *vars)
 		vars->key &= ~LEFT;
 	if (key_code == R_RIGHT)
 		vars->key &= ~RIGHT;
+	return (0);
 }

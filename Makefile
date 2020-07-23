@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/30 21:50:12 by amonteli          #+#    #+#              #
-#    Updated: 2020/07/23 04:04:20 by amonteli         ###   ########lyon.fr    #
+#    Updated: 2020/07/23 04:11:32 by amonteli         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,10 @@
 NAME		=		cub3D
 
 HEADERS		=		includes/cub3d.h		\
+
+CC			=		clang-9
+
+CFLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
 
 SRCS 		=		cub3d.c					\
 					parser/parser.c			\
@@ -25,7 +29,7 @@ SRCS 		=		cub3d.c					\
 					engine/keybinds.c		\
 					engine/movement.c		\
 
-FLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
+FLAGS 		= 		
 
 OBJS		= 		$(addprefix srcs/, $(SRCS:.c=.o)) 
 
@@ -34,13 +38,14 @@ LIB 		= 		libft/libft.a
 all			: 		$(NAME)
 
 $(NAME)		: $(OBJS)
-		@make -C mlx re
 		@make -C libft
-		clang-9 $(OBJS) -I $(HEADERS) -g3 -L./mlx -lX11 -lXext -lmlx -lm -pthread -lbsd libft/libft.a -o $(NAME)
+		@make -C mlx
+		@$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -g3 -L./mlx -lX11 -lXext -lmlx -lm -pthread -lbsd $(LIB) -o $(NAME)
 		@echo "\033[32mCub3d ready to be launched!\033[0m"
 
 %.o: %.c libft/libft.h
-		@gcc -o $@ -c $< $(FLAGS) -I libft -I mlx
+		@$(CC) $(CFLAGS) -g3 -c $< -o $@ -I $(HEADERS)
+		# @$(CC) $(CFLAGS) -o $@ -c $< $(FLAGS) -I libft -I mlx
 		@echo "\033[34mCompiled $<\033[0m"
 
 bonus		:		$(NAME)
