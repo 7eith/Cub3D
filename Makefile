@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/30 21:50:12 by amonteli          #+#    #+#              #
-#    Updated: 2020/02/19 04:19:19 by amonteli         ###   ########lyon.fr    #
+#    Updated: 2020/07/23 04:02:38 by amonteli         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,52 +14,6 @@
 NAME		=		Cub3D
 
 HEADERS		=		includes/cub3d.h		\
-
-LIBFT_INC	=		libft/libft.h
-
-LIBFT_SRCS	=		ft_atoi.c				\
-					ft_bzero.c				\
-					ft_isalnum.c			\
-					ft_isalpha.c			\
-					ft_isascii.c			\
-					ft_isdigit.c			\
-					ft_isprint.c			\
-					ft_memcpy.c				\
-					ft_memset.c				\
-					ft_strchr.c				\
-					ft_strrchr.c			\
-					ft_strlen.c				\
-					ft_strncmp.c			\
-					ft_strnstr.c			\
-					ft_tolower.c			\
-					ft_toupper.c			\
-					ft_memccpy.c			\
-					ft_memmove.c			\
-					ft_memchr.c				\
-					ft_memcmp.c				\
-					ft_calloc.c				\
-					ft_strdup.c				\
-					ft_strlcpy.c			\
-					ft_strlcat.c			\
-					ft_substr.c				\
-					ft_strjoin.c			\
-					ft_strtrim.c			\
-					ft_split.c				\
-					ft_itoa.c				\
-					ft_strmapi.c			\
-					ft_putchar_fd.c			\
-					ft_putstr_fd.c			\
-					ft_putendl_fd.c			\
-					ft_putnbr_fd.c			\
-					ft_lstnew.c				\
-					ft_lstadd_front.c		\
-					ft_lstsize.c			\
-					ft_lstlast.c			\
-					ft_lstadd_back.c		\
-					ft_lstdelone.c			\
-					ft_lstclear.c			\
-					ft_lstiter.c			\
-					ft_lstmap.c				\
 
 SRCS 		=		cub3d.c					\
 					parser/parser.c			\
@@ -73,21 +27,20 @@ SRCS 		=		cub3d.c					\
 
 FLAGS 		= 		-Wall -Wextra -g3 -fsanitize=address
 
-OBJS		= 		$(addprefix srcs/, $(SRCS:.c=.o)) $(addprefix libft/, $(LIBFT_SRCS:.c=.o))
+OBJS		= 		$(addprefix srcs/, $(SRCS:.c=.o)) 
 
 LIB 		= 		libft/libft.a
 
 all			: 		$(NAME)
 
 $(NAME)		: $(OBJS)
-		@make -C mlx
+		@make -C mlx re
 		@make -C libft
-		@cp libft/libft.a $(NAME)
-		@gcc $(FLAGS) -I mlx -L mlx -lmlx -framework OpenGL -framework AppKit -I $(HEADERS) $(OBJS) $(LIB) -o $(NAME)
+		clang-9 $(OBJS) -I $(HEADERS) -g3 -L./mlx -lX11 -lXext -lmlx -lm -pthread -lbsd libft/libft.a -o $(NAME)
 		@echo "\033[32mCub3d ready to be launched!\033[0m"
 
-%.o: %.c $(HEADERS) libft/libft.h
-		@gcc -I $(HEADERS) -I $(LIBFT_INC) -o $@ -c $< $(FLAGS)
+%.o: %.c libft/libft.h
+		@gcc -o $@ -c $< $(FLAGS) -I libft -I mlx
 		@echo "\033[34mCompiled $<\033[0m"
 
 bonus		:		$(NAME)

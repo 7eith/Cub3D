@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 21:55:06 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/19 04:58:01 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/07/22 21:08:50 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 # include "../mlx/mlx.h"
 
 # define TEXTURES 5
