@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:04:24 by amonteli          #+#    #+#             */
-/*   Updated: 2020/07/31 09:24:53 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/08/04 19:30:09 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,17 @@ void			parse_value(t_game *vars, char *line)
 
 void        parse_configuration(t_game *vars, int fd)
 {
-    ft_printf("%s", "parsing configurations\n");
-
     char			*line;
 	int				ret;
 
 	while ((ret = get_next_line(fd, &line)) && !is_valid_configuration(vars))
 	{
 		parse_value(vars, line);
-		printf("{%s}\n", line);
 		free(line);
 	}
-    free(line);
-	if (ret == -1)
+	if (ft_strlen(line) != 0)
+		ret = -1;
+	free(line);
+	if (ret == -1 || !ret)
 		exit_program(vars, "Failed to read map.");
 }

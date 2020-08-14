@@ -1,0 +1,14 @@
+R 800 600
+
+SO ./textures/pikachu.xpm
+NO ./textures/pikachu.xpm
+
+WE ./textures/pikachu.xpm
+
+EA ./textures/pikachu.xpm
+
+S ./textures/pikachu.xpm
+
+F 70,        100,        25
+
+C 225,      35, 170
