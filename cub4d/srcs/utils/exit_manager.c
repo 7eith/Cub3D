@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 02:20:19 by amonteli          #+#    #+#             */
-/*   Updated: 2020/07/31 09:27:57 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/03 21:06:44 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void        exit_program(t_game *vars, char *reason)
     free(vars->paths[WEST]);
     free(vars->paths[SOUTH]);
     free(vars->paths[SPRITE]);
+    free(vars->mlx);
     free(vars);
-
     exit(0);
 }

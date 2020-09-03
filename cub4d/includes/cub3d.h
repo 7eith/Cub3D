@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/07/31 09:21:57 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/08/15 01:37:46 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,12 @@ void					check_params(t_game *vars, int argc, char **args);
 */
 
 void					parse_configuration(t_game *vars, int fd);
+
+/*
+**	parser/map_parser.c
+*/
+
+void					parse_map(t_game *vars, int fd);
 
 /*
 **	utils/exit_manager.c

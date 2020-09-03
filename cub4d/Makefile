@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/30 01:23:03 by amonteli          #+#    #+#              #
-#    Updated: 2020/07/31 09:22:45 by amonteli         ###   ########lyon.fr    #
+#    Updated: 2020/09/03 21:01:59 by amonteli         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,13 @@ HEADERS			=		includes/cub3d.h
 
 CC				=		clang-9
 
-CFLAGS 			= 		-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS 			= 		-Wall -Wextra -g3 -fsanitize=address
 
 SRCS			=		\
 						main.c \
-						$(addprefix parser/, parser.c args_parser.c configuration_parser.c) \
+						$(addprefix parser/, parser.c args_parser.c configuration_parser.c map_parser.c) \
 						$(addprefix utils/, exit_manager.c utilities.c) \
-					
+
 OBJS			= 		$(addprefix srcs/, $(SRCS:.c=.o))
 
 LIB 			= 		libft/libft.a
@@ -32,9 +32,7 @@ LIB 			= 		libft/libft.a
 all				: 		$(NAME)
 
 $(NAME)		: $(OBJS)
-		# @make -C libft
-		# @make -C mlx
-		$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -g3 -L./mlx -lX11 -lXext -lmlx -lm -pthread -lbsd $(LIB) -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -g3 -L./mlx -lX11 -lXext -lmlx -lm -pthread -lbsd $(LIB) -o $(NAME)
 
 %.o: %.c $(HEADERS)
 		@$(CC) $(CFLAGS) -g3 -c $< -o $@ -I $(HEADERS)

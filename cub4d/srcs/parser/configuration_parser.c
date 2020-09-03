@@ -6,19 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:04:24 by amonteli          #+#    #+#             */
-/*   Updated: 2020/08/04 19:30:09 by amonteli         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utilities.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amonteli <amonteli@student.le-101.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 05:10:26 by amonteli          #+#    #+#             */
-/*   Updated: 2020/02/19 01:18:36 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/03 21:13:08 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +14,21 @@
 
 void			parse_resolution(t_game *vars, char *line)
 {
+	int		screensize_x;
+	int		screensize_y;
+
+	screensize_x = 0;
+	screensize_y = 0;
+	vars->mlx = mlx_init();
+	mlx_get_screen_size(vars->mlx, &screensize_x, &screensize_y);
 	if (vars->width != -1 || vars->height != -1)
 		exit_program(vars, "Resolution already parsed.");
 	vars->width = ft_atoi(line);
 	vars->height = ft_atoi(line + ft_numlen(vars->width));
-	if (vars->width > 2560)
-		vars->width = 2560;
-	if (vars->height > 1440)
-		vars->height = 1440;
+	if (vars->width > screensize_x)
+		vars->width = screensize_x;
+	if (vars->height > screensize_y)
+		vars->height = screensize_y;
 	vars->conf |= R;
 }
 
@@ -108,9 +103,9 @@ void			parse_value(t_game *vars, char *line)
 		exit_program(vars, "Invalid keys!");
 }
 
-void        parse_configuration(t_game *vars, int fd)
+void			parse_configuration(t_game *vars, int fd)
 {
-    char			*line;
+	char			*line;
 	int				ret;
 
 	while ((ret = get_next_line(fd, &line)) && !is_valid_configuration(vars))
