@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:04:24 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/03 21:13:08 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/06 23:55:47 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 void			parse_resolution(t_game *vars, char *line)
 {
-	int		screensize_x;
-	int		screensize_y;
+	int		index;
 
-	screensize_x = 0;
-	screensize_y = 0;
-	vars->mlx = mlx_init();
-	mlx_get_screen_size(vars->mlx, &screensize_x, &screensize_y);
+	index = -1;
 	if (vars->width != -1 || vars->height != -1)
 		exit_program(vars, "Resolution already parsed.");
+	if (!is_only_resolution(line))
+		exit_program(vars, "Contains invalid char in resolution");
 	vars->width = ft_atoi(line);
-	vars->height = ft_atoi(line + ft_numlen(vars->width));
-	if (vars->width > screensize_x)
-		vars->width = screensize_x;
-	if (vars->height > screensize_y)
-		vars->height = screensize_y;
+	line += ft_numlen(vars->width);
+	if (*line++ != ' ')
+		exit_program(vars, "Can't parse resolution");
+	vars->height = ft_atoi(line);
+	while (ft_isdigit(*line))
+		line++;
+	if (*line)
+		exit_program(vars, "Space at the end of the resolution");
+
 	vars->conf |= R;
 }
 

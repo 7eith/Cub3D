@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:26:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/03 21:05:53 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/05 22:03:21 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ t_game						*init_vars(void)
 	if (!(vars = malloc(sizeof(t_game))))
 		return (NULL);
 
-	vars->mlx = mlx_init();
-
 	vars->width = -1;
 	vars->height = -1;
+
 	vars->conf = 0;
 	vars->screen = 0;
 	vars->map_buf = NULL;
 	vars->map = NULL;
-	vars->mlx = NULL;
+	vars->mlx = mlx_init();
+
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);
