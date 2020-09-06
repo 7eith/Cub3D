@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:04:24 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/06 23:55:47 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/06 23:57:43 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			parse_resolution(t_game *vars, char *line)
 		line++;
 	if (*line)
 		exit_program(vars, "Space at the end of the resolution");
-
+	check_screen_size(vars);
 	vars->conf |= R;
 }
 
