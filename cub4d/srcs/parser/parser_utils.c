@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 22:22:56 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/06 23:54:37 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/07 00:18:56 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		is_only_resolution(char *line)
 	int		count;
 
 	count = 0;
-	while(line[count])
+	while (line[count])
 	{
 		if (!(ft_isdigit(line[count]) || line[count] == ' '))
 			return (0);

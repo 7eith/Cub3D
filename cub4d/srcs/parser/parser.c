@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:25:57 by amonteli          #+#    #+#             */
-/*   Updated: 2020/08/15 01:36:44 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/07 00:19:55 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void						debug_parser(t_game *vars)
 	printf("[POS] x=%f, y=%f\n", vars->posX, vars->posY);
 }
 
-void        parse_file(t_game *vars, char *filename)
+void		parse_file(t_game *vars, char *filename)
 {
 	int			fd;
 
