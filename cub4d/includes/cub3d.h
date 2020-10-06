@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/06 23:55:01 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/09/07 00:22:36 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ enum					e_key
 	MV_LEFT = (1 << 4),
 	MV_RIGHT = (1 << 5),
 };
-
 
 enum					e_colored_textures
 {
@@ -142,7 +141,7 @@ typedef struct			s_game
  **	parser/parser.c
 */
 
-void        			parse_file(t_game *vars, char *filename);
+void					parse_file(t_game *vars, char *filename);
 
 /*
 **	parser/args_parser.c
@@ -173,7 +172,7 @@ void					check_screen_size(t_game *vars);
 **	utils/exit_manager.c
 */
 
-void        			exit_program(t_game *vars, char *reason);
+void					exit_program(t_game *vars, char *reason);
 
 /*
 **	utils/utilities.c
