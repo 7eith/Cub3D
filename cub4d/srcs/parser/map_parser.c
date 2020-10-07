@@ -6,7 +6,7 @@
 /*   By: snkh <snkh@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 01:31:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/06 14:03:33 by snkh             ###   ########lyon.fr   */
+/*   Updated: 2020/10/07 10:15:04 by snkh             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char		*get_formated_line(t_game *vars, char *line, int size)
 	return (line);
 }
 
-
 // comment faire?
 // tout d'abord realloc toutes les lines de la meme taille donc prendre la plus grosse et full free+strdup
 // puis ligne par ligne passer d'abord le fill du debut
@@ -91,23 +90,54 @@ char		**alloc_map(t_game *vars, int line_size)
 	return (map);
 }
 
+int		copy_and_check(char *dst, char *src, int size)
+{
+	int		count;
+	int		has_wall;
+
+	count = 0;
+	has_wall = 0;
+	while(src[count])
+	{
+		if (src[count] == '1')
+			has_wall = 1;
+		if (src[count] == ' ')
+			src[count] = has_wall ? '0' : '1';
+		dst[count] = src[count];
+		count++;
+	}
+	while (count < size)
+	{
+		dst[count] = '1';
+		count++;
+	}
+	return (has_wall);
+}
+
 void		load_map(t_game *vars, char **map, int size_line)
 {
 	int		current_line;
-	int		count;
 
 	current_line = 0;
-	count = 0;
 	while(map[current_line])
 	{
-		while (vars->map[current_line][count] && vars->map[current_line][count] == ' ') // if start with ' ' replace with char
-		{
-			vars->map[current_line][count] = 'R';
-			count++;
-		}
-		ft_strlcpy(map[current_line], vars->map[current_line], size_line);
-		count = 0;
+		if (!copy_and_check(map[current_line], vars->map[current_line], size_line))
+			exit_program(vars, "Not wall");
+		// ft_strlcpy(map[current_line], vars->map[current_line], size_line);
 		current_line++;
+	}
+}
+
+void		check_map(t_game *vars)
+{
+	int		count;
+
+	count = where_map_segment_start(vars->map[0]);
+	// printf("{%d}\n", count);
+	while (vars->map[0][count])
+	{
+		if (vars->map[0][count] != '1' || vars->map[0][count] != ' ')
+			exit_program(vars, "Empty line at top");
 	}
 }
 
@@ -118,15 +148,19 @@ void		format_map(t_game *vars)
 	int			count;
 
 	count = 0;
+	check_map(vars);
 	map = alloc_map(vars, high);
 	load_map(vars, map, high);
 	while(vars->map[count])
 	{
-		printf("{%s}\n", map[count]);
+		free(vars->map[count]);
+		// printf("{%s}\n", map[count]);
 		// vars->map[count] = get_formated_line(vars, vars->map[count], high);
 		// vars->map[count] = realloc_lines(vars, vars->map[count], high);
 		count++;
 	}
+	free(vars->map);
+	vars->map = map;
 	// printf("%s\n", vars->map[find_highest(vars->map)]);
 	// int		index;
 
