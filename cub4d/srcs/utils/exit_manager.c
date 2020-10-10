@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: snkh <snkh@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 02:20:19 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/14 01:02:44 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/06 23:08:14 by snkh             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		exit_program(t_game *vars, char *reason)
 {
-	ft_printf("%s", reason);
+	ft_printf("Error\n%s", reason);
 	free(vars->paths[NORTH]);
 	free(vars->paths[EAST]);
 	free(vars->paths[WEST]);
@@ -28,8 +28,9 @@ void		exit_program(t_game *vars, char *reason)
 	int		index;
 
 	index = 0;
-	while(vars->map[index])
-		free(vars->map[index++]);
+	if (vars->map)
+		while(vars->map[index])
+			free(vars->map[index++]);
 	free(vars);
 	exit(0);
 }

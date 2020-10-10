@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/07 00:22:36 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/10 23:53:19 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include "../mlx/mlx.h"
 
 # define TEXTURES 5
-# define MAP_FLAGS "NSWE201 "
+# define MAP_POSITION_TYPE "NSWE"
+# define MAP_FLAGS "NSWE201 \n"
 
 /*
 **	Configurations key in map.cub
@@ -181,5 +182,8 @@ void					exit_program(t_game *vars, char *reason);
 int						is_valid_configuration(t_game *vars);
 t_color					create_color(int r, int g, int b);
 float					ft_fabs(float number);
+
+
+int						is_valid_map(t_game *vars);
 
 #endif
