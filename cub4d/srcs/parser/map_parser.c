@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 01:31:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/11 00:43:46 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/11 03:30:44 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,14 @@ void		parse_map(t_game *vars, int fd)
 
 	while (vars->map[++count])
 		vars->map[count] = get_line_with_removed_space(vars->map[count]);
-	// free(vars->map_buf); // double free xd
 
 	if (!is_valid_map(vars))
 		exit_program(vars, "Invalid maps.");
 	// int count;
-	count = 0;
-	while(vars->map[count])
-	{
-		printf("{%s}\n", vars->map[count]);
-		count++;
-	}
+	// count = 0;
+	// while(vars->map[count])
+	// {
+	// 	printf("{%s}\n", vars->map[count]);
+	// 	count++;
+	// }
 }
