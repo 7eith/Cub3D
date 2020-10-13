@@ -6,28 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 22:13:38 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/13 20:45:42 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/13 21:44:47 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
-
-char		**copy_tab(char **map) // to include in libft
-{
-	char	**tab;
-	int		count;
-
-	count = 0;
-	while (map[count])
-		count++;
-	if (!(tab = malloc(sizeof(char *) * (count + 1))))
-		return (NULL);
-	count = -1;
-	while (map[++count])
-		tab[count] = ft_strdup(map[count]);
-	tab[count] = 0;
-	return (tab);
-}
 
 void		format_map(char **map)
 {
@@ -70,28 +53,28 @@ void		get_player_pos(char **map, int *x, int *y)
 	}
 }
 
-int		check_side(char **map, int x, int y, int height)
+int			check_side(char **map, int x, int y, int height)
 {
 	int			count;
 	const int	line_size = ft_strlen(map[x]);
 
 	count = 0;
-	if (x > 0 && map[x - 1][y] == '0') // check en haut
+	if (x > 0 && map[x - 1][y] == '0')
 	{
 		map[x - 1][y] = '2';
 		count++;
 	}
-	if (x < height - 1 && map[x + 1][y] == '0') // en bas
+	if (x < height - 1 && map[x + 1][y] == '0')
 	{
 		map[x + 1][y] = '2';
 		count++;
 	}
-	if (y > 0 && map[x][y - 1] == '0') // gauche
+	if (y > 0 && map[x][y - 1] == '0')
 	{
 		map[x][y - 1] = '2';
 		count++;
 	}
-	if (y != line_size && map[x][y + 1] == '0') // droite
+	if (y != line_size && map[x][y + 1] == '0')
 	{
 		map[x][y + 1] = '2';
 		count++;
@@ -99,7 +82,7 @@ int		check_side(char **map, int x, int y, int height)
 	return (count);
 }
 
-int		backtrack_map(char **map, int width, int height)
+int			backtrack_map(char **map, int width, int height)
 {
 	int		x;
 	int		y;
@@ -112,7 +95,6 @@ int		backtrack_map(char **map, int width, int height)
 	while (!has_posed)
 	{
 		has_posed = 1;
-
 		x = 0;
 		while (map[x])
 		{
@@ -139,13 +121,6 @@ int		backtrack_map(char **map, int width, int height)
 		x++;
 	}
 	return (1);
-
-	// while (++y < data->maph && (x = -1) < 0)
-	// while (++x < data->mapw)
-	// 	if (map[x + y * data->mapw] == '9')
-	// 		if (map[x + y * data->mapw] == '9' && (x == 0 ||
-	// 			x == data->mapw - 1 || y == 0 || y == data->maph - 1))
-	// 			error(data, "Map ouverte", -1);
 }
 
 int			is_valid_map(t_game *vars)
@@ -161,28 +136,11 @@ int			is_valid_map(t_game *vars)
 	while(vars->map[count])
 		if (ft_strlen(vars->map[count++]) != line_size)
 			exit_program(vars, "Invalid line size!");
-	if (!(map = copy_tab(vars->map)))
+	if (!(map = ft_copy_2d_tabs(vars->map)))
 		return (0);
 	format_map(map);
 	if (!backtrack_map(map, line_size, count))
 		exit_program(vars, "Map ouverte");
-	// DEBUG
-	count = -1;
-	while (map[++count])
-		ft_printf("{%s}\n", map[count]);
 	ft_clear_2d_tabs((void **)map);
 	return (1);
 }
-
-// ne pas oublier que les segfault viennent des x + 1 et x - 1 vu que
-
-/*
-
-111111
-111111
-1111111111
-111111
-111111
-
-ca segfault car il fill mais check x - 1 et x + 1
-*/
