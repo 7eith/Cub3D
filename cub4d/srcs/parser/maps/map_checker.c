@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 22:13:38 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/11 05:59:09 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/13 20:45:42 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,8 @@ int		backtrack_map(char **map, int width, int height)
 		y = 0;
 		while(map[x][y])
 		{
-			printf("x=%d, y=%d, width=%d, height=%d\n", x, y, width, height);
 			if (map[x][y] == '2' && (x == 0 || y == 0 || y == width - 1 || x == height - 1))
-			{
 				return (0);
-				// printf("x=%d, y=%d, is_open=%d\n", x, y, (x == 0 || y == 0 || x == width || y == height));
-			}
 			y++;
 		}
 		x++;
@@ -161,9 +157,10 @@ int			is_valid_map(t_game *vars)
 	count = 0;
 	while(vars->map[count])
 		count++;
-	// while(vars->map[count])
-		// if (ft_strlen(vars->map[count++]) != line_size)
-			// exit_program(vars, "Invalid line size!");
+	count = 0;
+	while(vars->map[count])
+		if (ft_strlen(vars->map[count++]) != line_size)
+			exit_program(vars, "Invalid line size!");
 	if (!(map = copy_tab(vars->map)))
 		return (0);
 	format_map(map);
@@ -176,3 +173,16 @@ int			is_valid_map(t_game *vars)
 	ft_clear_2d_tabs((void **)map);
 	return (1);
 }
+
+// ne pas oublier que les segfault viennent des x + 1 et x - 1 vu que
+
+/*
+
+111111
+111111
+1111111111
+111111
+111111
+
+ca segfault car il fill mais check x - 1 et x + 1
+*/
