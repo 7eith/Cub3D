@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 22:13:38 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/13 21:44:47 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/13 23:03:51 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			check_side(char **map, int x, int y, int height)
 	return (count);
 }
 
-int			backtrack_map(char **map, int width, int height)
+int			check_map(char **map, int width, int height)
 {
 	int		x;
 	int		y;
@@ -95,31 +95,18 @@ int			backtrack_map(char **map, int width, int height)
 	while (!has_posed)
 	{
 		has_posed = 1;
-		x = 0;
-		while (map[x])
-		{
-			y = 0;
-			while(map[x][y])
-			{
+		x = -1;
+		while (map[++x] && (y = -1))
+			while (map[x][++y])
 				if (map[x][y] == '2' && check_side(map, x, y, height) != 0)
 					has_posed = 0;
-				y++;
-			}
-			x++;
-		}
 	}
-	x = 0;
-	while (map[x])
-	{
-		y = 0;
-		while(map[x][y])
-		{
-			if (map[x][y] == '2' && (x == 0 || y == 0 || y == width - 1 || x == height - 1))
+	x = -1;
+	while (map[++x] && (y = -1))
+		while (map[x][++y])
+			if (map[x][y] == '2'
+			&& (x == 0 || y == 0 || y == width - 1 || x == height - 1))
 				return (0);
-			y++;
-		}
-		x++;
-	}
 	return (1);
 }
 
@@ -130,17 +117,20 @@ int			is_valid_map(t_game *vars)
 	const unsigned long	line_size = ft_strlen(vars->map[0]);
 
 	count = 0;
-	while(vars->map[count])
+	while (vars->map[count])
 		count++;
 	count = 0;
-	while(vars->map[count])
+	while (vars->map[count])
 		if (ft_strlen(vars->map[count++]) != line_size)
 			exit_program(vars, "Invalid line size!");
 	if (!(map = ft_copy_2d_tabs(vars->map)))
 		return (0);
 	format_map(map);
-	if (!backtrack_map(map, line_size, count))
-		exit_program(vars, "Map ouverte");
+	if (!check_map(map, line_size, count))
+	{
+		ft_clear_2d_tabs((void **)map);
+		return (0);
+	}
 	ft_clear_2d_tabs((void **)map);
 	return (1);
 }

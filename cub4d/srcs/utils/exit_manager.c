@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snkh <snkh@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 02:20:19 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/06 23:08:14 by snkh             ###   ########lyon.fr   */
+/*   Updated: 2020/10/13 22:52:43 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,10 @@ void		exit_program(t_game *vars, char *reason)
 	free(vars->paths[SOUTH]);
 	free(vars->paths[SPRITE]);
 	free(vars->mlx);
-
 	if (vars->map_buf)
 		free(vars->map_buf);
-
-	int		index;
-
-	index = 0;
 	if (vars->map)
-		while(vars->map[index])
-			free(vars->map[index++]);
+		ft_clear_2d_tabs((void **)vars->map);
 	free(vars);
 	exit(0);
 }
