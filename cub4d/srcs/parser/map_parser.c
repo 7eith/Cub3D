@@ -6,11 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 01:31:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/13 22:53:04 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 06:19:05 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 char		*get_line_with_removed_space(char *line)
 {

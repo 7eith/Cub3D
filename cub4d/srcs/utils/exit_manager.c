@@ -6,11 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 02:20:19 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/13 22:52:43 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 06:18:23 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void		exit_program(t_game *vars, char *reason)
 {

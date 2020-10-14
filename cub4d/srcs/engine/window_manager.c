@@ -6,11 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:19:30 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/14 04:58:17 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 06:17:35 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int			close_window(t_game *vars)
 {

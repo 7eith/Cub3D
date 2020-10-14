@@ -6,11 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 22:13:38 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/14 04:09:32 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 06:19:16 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "cub3d.h"
 
 void		format_map(char **map)
 {

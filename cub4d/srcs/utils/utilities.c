@@ -6,11 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 05:10:26 by amonteli          #+#    #+#             */
-/*   Updated: 2020/07/31 09:04:02 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 06:18:29 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 /*
 ** Check if configurations is valid

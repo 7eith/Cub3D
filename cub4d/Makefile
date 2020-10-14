@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/30 01:23:03 by amonteli          #+#    #+#              #
-#    Updated: 2020/10/14 04:47:14 by amonteli         ###   ########lyon.fr    #
+#    Updated: 2020/10/14 06:17:26 by amonteli         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME)		: $(OBJS)
 		@$(CC) $(CFLAGS) $(OBJS) -I $(HEADERS) -g3 -L./mlx -lX11 -lXext -lmlx -lm -pthread -lbsd $(LIB) -o $(NAME)
 
 %.o: %.c $(HEADERS)
-		@$(CC) $(CFLAGS) -g3 -c $< -o $@ -I $(HEADERS)
+		@$(CC) $(CFLAGS) -g3 -c $< -o $@ -I $(INC_DIR)
 		@echo "\033[34mCompiled $<\033[0m"
 
 bonus		:		$(NAME)

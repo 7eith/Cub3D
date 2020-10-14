@@ -6,11 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:04:24 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/06 23:59:40 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 06:19:05 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void			parse_resolution(t_game *vars, char *line)
 {
