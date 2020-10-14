@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/10 23:53:19 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 04:58:24 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,23 @@ enum					e_conf
 
 enum					e_key
 {
-	LEFT = (1 << 0),
-	RIGHT = (1 << 1),
-	MV_UP = (1 << 2),
-	MV_DOWN = (1 << 3),
-	MV_LEFT = (1 << 4),
-	MV_RIGHT = (1 << 5),
+	MV_UP = (1 << 0),
+	MV_DOWN = (1 << 1),
+	MV_LEFT = (1 << 2),
+	MV_RIGHT = (1 << 3),
+	LEFT = (1 << 4),
+	RIGHT = (1 << 5),
+};
+
+enum					e_keycode
+{
+	KEY_ESCAPE = 65307,
+	KEY_MOVE_UP = 119,
+	KEY_MOVE_DOWN = 115,
+	KEY_MOVE_LEFT = 97,
+	KEY_MOVE_RIGHT = 100,
+	KEY_LEFT = 65361,
+	KEY_RIGHT = 65363
 };
 
 enum					e_colored_textures
@@ -185,5 +196,27 @@ float					ft_fabs(float number);
 
 
 int						is_valid_map(t_game *vars);
+
+/*
+**	=============================
+**
+**			  ENGINE
+**
+**  =============================
+*/
+
+/*
+**	engine/window_manager.c
+*/
+
+void					open_window(t_game *vars);
+int						close_window(t_game *vars);
+
+/*
+**	engine/keyboard_manager.c
+*/
+
+int						key_press(int key_code, t_game *vars);
+int						key_release(int key_code, t_game *vars);
 
 #endif

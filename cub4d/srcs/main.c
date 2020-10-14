@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:26:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/09/07 00:18:45 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/14 04:24:26 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int							main(int argsc, char **args)
 		return (0);
 	check_params(vars, argsc, args);
 	parse_file(vars, vars->screen ? args[2] : args[1]);
+	if (!vars->screen)
+		open_window(vars);
 	exit_program(vars, "Success launched! Closed.");
 	return (0);
 }
