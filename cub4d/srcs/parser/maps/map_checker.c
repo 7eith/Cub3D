@@ -6,13 +6,13 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 22:13:38 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/14 06:19:16 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 04:33:47 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		format_map(char **map)
+void		format_map(t_game *vars, char **map)
 {
 	int		count;
 	int		cursor;
@@ -25,30 +25,11 @@ void		format_map(char **map)
 		{
 			if (map[count][cursor] == '2')
 				map[count][cursor] = '0';
-			if (ft_strchr(MAP_POSITION_TYPE, map[count][cursor]))
+			if (map[count][cursor] == vars->pos_type)
 				map[count][cursor] = '2';
 			cursor++;
 		}
 		cursor = 0;
-		count++;
-	}
-}
-
-void		get_player_pos(char **map, int *x, int *y)
-{
-	int		count;
-	int		found;
-
-	count = 0;
-	found = 0;
-	while (map[count] && !found)
-	{
-		if (ft_strchr_len(map[count], '2'))
-		{
-			*x = count;
-			*y = ft_strchr_len(map[count], '2');
-			found = 1;
-		}
 		count++;
 	}
 }
@@ -91,7 +72,6 @@ int			check_map(char **map, int width, int height)
 	x = 0;
 	y = 0;
 	has_posed = 0;
-	get_player_pos(map, &x, &y);
 	while (!has_posed)
 	{
 		has_posed = 1;
@@ -125,7 +105,7 @@ int			is_valid_map(t_game *vars)
 			exit_program(vars, "Invalid line size!");
 	if (!(map = ft_copy_2d_tabs(vars->map)))
 		return (0);
-	format_map(map);
+	format_map(vars, map);
 	if (!check_map(map, line_size, count))
 	{
 		ft_clear_2d_tabs((void **)map);

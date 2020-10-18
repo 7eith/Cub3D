@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 01:31:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/17 09:48:53 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 04:31:47 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,20 @@ void		read_map(t_game *vars, int fd)
 	free(line);
 }
 
-int			check_map_buffer(char *map)
+int			check_map_buffer(t_game *vars)
 {
 	int		count;
-	char	pos_type;
 
 	count = 0;
-	pos_type = 0;
-	while (map[count])
+	while (vars->map_buf[count])
 	{
-		if (!ft_strchr(MAP_FLAGS, map[count]))
+		if (!ft_strchr(MAP_FLAGS, vars->map_buf[count]))
 			return (0);
-		if (ft_strchr(MAP_POSITION_TYPE, map[count]))
+		if (ft_strchr(MAP_POSITION_TYPE, vars->map_buf[count]))
 		{
-			if (pos_type)
+			if (vars->pos_type)
 				return (0);
-			pos_type = map[count];
+			vars->pos_type = vars->map_buf[count];
 		}
 		count++;
 	}
@@ -83,7 +81,7 @@ void		parse_map(t_game *vars, int fd)
 	count = -1;
 	read_map(vars, fd);
 	close(fd);
-	if (!check_map_buffer(vars->map_buf))
+	if (!check_map_buffer(vars))
 		exit_program(vars, "Invalid map!");
 	vars->map = ft_split(vars->map_buf, '\n');
 	if (!vars->map)
