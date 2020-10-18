@@ -6,11 +6,16 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:47:07 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/14 06:18:34 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/17 09:35:17 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int				key_loop_controller(t_game *vars)
+{
+
+}
 
 int				key_press(int key_code, t_game *vars)
 {

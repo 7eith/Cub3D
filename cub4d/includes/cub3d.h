@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/14 04:58:24 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/17 09:34:12 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,5 +218,13 @@ int						close_window(t_game *vars);
 
 int						key_press(int key_code, t_game *vars);
 int						key_release(int key_code, t_game *vars);
+int						key_loop_controller(t_game *vars);
+
+
+/*
+**	engine/ui/raycast.c
+*/
+
+int						raycast(t_game *vars);
 
 #endif

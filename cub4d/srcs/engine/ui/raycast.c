@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 02:04:59 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 03:53:26 by amonteli         ###   ########lyon.fr   */
+/*   Created: 2020/10/14 06:22:39 by amonteli          #+#    #+#             */
+/*   Updated: 2020/10/17 09:50:17 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void			raycast_init_values(t_game *vars)
 {
@@ -139,7 +139,7 @@ void			raycast_draw(t_game *vars)
 int				raycast(t_game *vars)
 {
 	vars->x = 0;
-	vars->wall_height = vars->height / 1.20; // height of a walls
+	vars->wall_height = vars->height / 1.10; // height of a walls
 	while (vars->x < vars->width)
 	{
 		raycast_init_values(vars);
@@ -149,7 +149,7 @@ int				raycast(t_game *vars)
 		raycast_draw(vars);
 		vars->x++;
 	}
-	key_manager(vars);
+	key_loop_controller(vars);
 	mlx_clear_window(vars->mlx, vars->window);
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
 	return (1);
