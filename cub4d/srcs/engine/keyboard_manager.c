@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:47:07 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/17 09:35:17 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 06:09:32 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,19 @@
 
 int				key_loop_controller(t_game *vars)
 {
-
+	if (vars->key & MV_LEFT)
+		move_player_left(vars);
+	if (vars->key & MV_RIGHT)
+		move_player_right(vars);
+	if (vars->key & MV_UP)
+		move_player_up(vars);
+	if (vars->key & MV_DOWN)
+		move_player_down(vars);
+	if (vars->key & LEFT)
+		rotate_player_camera_to_left(vars);
+	if (vars->key & RIGHT)
+		rotate_player_camera_to_right(vars);
+	return (1);
 }
 
 int				key_press(int key_code, t_game *vars)

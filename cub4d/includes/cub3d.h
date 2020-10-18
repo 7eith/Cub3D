@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/17 09:34:12 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 06:09:06 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ typedef struct			s_game
 	void				*img;
 	int					*img_data;
 
+	char				pos_type;
+
 	float				posX;
 	float				posY;
 	float				dirX;
@@ -126,8 +128,8 @@ typedef struct			s_game
 	float				raydirX;
 	float				raydirY;
 
-	int					mapX;
-	int					mapY;
+	float				cam_plane_X;
+	float				cam_plane_Y;
 
 	float				sidedistX;
 	float				sidedistY;
@@ -135,6 +137,13 @@ typedef struct			s_game
 	float				deltadistY;
 	float				perpwalldist;
 
+	float				time;
+	float				old_time;
+	float				old_dir_x;
+	float				old_cam_plane_x;
+
+	int					mapX;
+	int					mapY;
 	int					stepX;
 	int					stepY;
 	int					hit;
@@ -147,6 +156,9 @@ typedef struct			s_game
 	float				x;
 	int					wall_height;
 	unsigned char		key;
+
+	float				move_speed;
+	float				rotation_speed;
 }						t_game;
 
 /*
@@ -220,11 +232,33 @@ int						key_press(int key_code, t_game *vars);
 int						key_release(int key_code, t_game *vars);
 int						key_loop_controller(t_game *vars);
 
+/*
+**	engine/movement_manager.c
+*/
+
+void					move_player_left(t_game *vars);
+void					move_player_right(t_game *vars);
+void					move_player_up(t_game *vars);
+void					move_player_down(t_game *vars);
+
+/*
+**	engine/rotation_manager.c
+*/
+
+void					rotate_player_camera_to_left(t_game *vars);
+void					rotate_player_camera_to_right(t_game *vars);
 
 /*
 **	engine/ui/raycast.c
 */
 
 int						raycast(t_game *vars);
+
+/*
+**	engine/ui/init_raycast.c
+*/
+
+void					initiate_raycast_and_mlx_data(t_game *vars);
+
 
 #endif
