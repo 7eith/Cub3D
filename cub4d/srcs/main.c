@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:26:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 03:55:40 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 06:17:02 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_game						*init_vars(void)
 	vars->map_buf = NULL;
 	vars->map = NULL;
 	vars->mlx = mlx_init();
-	vars->dirX = -1;
-	vars->planeY = 0.66;
+	vars->move_speed = 0.16f;
+	vars->rotation_speed = 0.16f;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);

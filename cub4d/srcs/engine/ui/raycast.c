@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 06:22:39 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 04:24:11 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 05:37:22 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void			raycast_init_values(t_game *vars)
 {
 	vars->cameraX = 2 * vars->x / (float)(vars->width - 1);
-	vars->raydirX = vars->dirX + vars->planeX * vars->cameraX;
-	vars->raydirY = vars->dirY + vars->planeY * vars->cameraX;
+	vars->raydirX = vars->dirX + vars->cam_plane_X * vars->cameraX;
+	vars->raydirY = vars->dirY + vars->cam_plane_Y * vars->cameraX;
 	vars->mapX = (int)vars->posX;
 	vars->mapY = (int)vars->posY;
 	vars->deltadistX = ft_fabs(1 / vars->raydirX);
