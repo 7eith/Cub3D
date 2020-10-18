@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 06:22:39 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/17 09:50:17 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 04:24:11 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,14 @@ void			raycast_draw(t_game *vars)
 	i = 0;
 	while (i < vars->drawstart)	// Floor
 	{
-		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[FLOOR].c;
+		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[SKY].c;
 		i++;
 	}
 	raycast_draw_walls(vars);
 	i = vars->drawend;
 	while (i < vars->height - 1) // Sky
 	{
-		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[SKY].c;
+		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[FLOOR].c;
 		i++;
 	}
 }
