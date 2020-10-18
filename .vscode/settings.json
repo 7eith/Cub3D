@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"algorithm": "c",
-		"array": "c",
-		"string_view": "c",
-		"type_traits": "c"
-	}
-}
