@@ -6,11 +6,40 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 04:16:31 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 05:37:15 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 02:51:25 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void		initialize_raycast_texture_and_data(t_game *vars, int type)
+{
+	t_textures	texture;
+
+	texture.width = 0;
+	texture.height = 0;
+	texture.bpp = -1;
+	texture.size = -1;
+	texture.endian = -1;
+	texture.img = mlx_xpm_file_to_image(vars->mlx, vars->paths[type], &texture.width, &texture.height);
+	if (!texture.img)
+		exit_program(vars, "Failed to convert .xpm to image!");
+	texture.data = (int *)mlx_get_data_addr(texture.img, &texture.bpp, &texture.size, &texture.endian);
+	if (!texture.data)
+		exit_program(vars, "Invalid data!");
+	if (!texture.width || !texture.height)
+		exit_program(vars, "Invalid size for texture.");
+	vars->textures[type] = texture;
+}
+
+void		initialize_raycast_textures(t_game *vars)
+{
+	int			count;
+
+	count = 0;
+	while (count < TEXTURES)
+		initialize_raycast_texture_and_data(vars, count++);
+}
 
 void		initialize_raycast_default_value(t_game *vars)
 {
@@ -31,7 +60,7 @@ void		initialize_raycast_default_value(t_game *vars)
 
 void		initialize_dir_and_cam(t_game *vars)
 {
-	float	rotation;
+	float		rotation;
 
 	rotation = 0;
 	if (vars->pos_type == 'N')
@@ -54,4 +83,5 @@ void		initiate_raycast_and_mlx_data(t_game *vars)
 {
 	initialize_raycast_default_value(vars);
 	initialize_dir_and_cam(vars);
+	initialize_raycast_textures(vars);
 }
