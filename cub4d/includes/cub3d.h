@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 06:09:06 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 02:36:25 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ typedef	struct			s_textures
 {
 	int					width;
 	int					height;
+	int					bpp;
+	int					size;
+	int					endian;
 	void				*img;
 	int					*data;
 }						t_textures;
@@ -107,7 +110,10 @@ typedef struct			s_game
 	int					height;
 	int					conf;
 	t_color				colors[2];
+
 	char				*paths[5];
+	t_textures			textures[5];
+
 	char				**map;
 	char				*map_buf;
 
