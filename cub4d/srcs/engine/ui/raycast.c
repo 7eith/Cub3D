@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 06:22:39 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 05:37:22 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 04:06:10 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void			raycast_hit(t_game *vars)
 	}
 }
 
-void			raycast_get_values(t_game *vars)
+void			raycast_get_values_for_sky_and_floor(t_game *vars)
 {
 	if (vars->side == 0 || vars->side == 1)
 		vars->perpwalldist = (vars->mapX - vars->posX + (1 - vars->stepX) / 2) / vars->raydirX;
@@ -98,54 +98,16 @@ void			raycast_get_values(t_game *vars)
 		vars->drawend = vars->height - 1;
 }
 
-void			raycast_draw_walls(t_game *vars)
-{
-	int			color;
-
-	color = 0x0CFF00;
-	if (vars->side == 1)
-		color = 0xFF0000; // red
-	if (vars->side == 2)
-		color = 0x0012FF; // red
-	if (vars->side == 3)
-		color = 0x8D00FF; // red
-	while (vars->drawstart < vars->drawend)	// sol? wtf
-	{
-		vars->img_data[vars->drawstart * vars->width + (int)vars->x] = color;
-		vars->drawstart++;
-	}
-}
-
-void			raycast_draw(t_game *vars)
-{
-	int			i;
-
-	i = 0;
-	while (i < vars->drawstart)	// Floor
-	{
-		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[SKY].c;
-		i++;
-	}
-	raycast_draw_walls(vars);
-	i = vars->drawend;
-	while (i < vars->height - 1) // Sky
-	{
-		vars->img_data[i * vars->width + (int)vars->x] = vars->colors[FLOOR].c;
-		i++;
-	}
-}
-
-
 int				raycast(t_game *vars)
 {
 	vars->x = 0;
-	vars->wall_height = vars->height / 1.10; // height of a walls
+	vars->wall_height = vars->height / 1.35; // height of a walls
 	while (vars->x < vars->width)
 	{
 		raycast_init_values(vars);
 		raycast_get_steps(vars);
 		raycast_hit(vars);
-		raycast_get_values(vars);
+		raycast_get_values_for_sky_and_floor(vars);
 		raycast_draw(vars);
 		vars->x++;
 	}

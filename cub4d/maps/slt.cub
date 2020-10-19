@@ -1,11 +1,11 @@
-R 1920 1080
+R 800 700
 
-SO ./textures/pikachu.xpm
-NO ./textures/pikachu.xpm
+SO ./textures/sonic_wall.xpm
+NO ./textures/sonic_wall.xpm
 
-WE ./textures/pikachu.xpm
+WE ./textures/sonic_wall.xpm
 
-EA ./textures/pikachu.xpm
+EA ./textures/sonic_wall.xpm
 
 S ./textures/pikachu.xpm
 
@@ -17,7 +17,7 @@ C 135,206,235
 100000000000000001
 100000000000000001
 100000000000000001
-1000W0000000000001
+1000N0000000000001
 100000000000000001
 100000011111000001
 100000011101000001
