@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:26:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 06:17:02 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 02:27:19 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_game						*init_vars(void)
 	vars->mlx = mlx_init();
 	vars->move_speed = 0.16f;
 	vars->rotation_speed = 0.16f;
+	vars->pos_type = 0;
+	vars->key = 0;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);
