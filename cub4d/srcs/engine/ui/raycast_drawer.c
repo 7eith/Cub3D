@@ -6,29 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 03:58:43 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/19 04:25:52 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/21 08:34:40 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void			raycast_draw_walls_colored(t_game *vars)
-{
-	int			color;
-
-	color = 0x0CFF00;
-	if (vars->side == 1)
-		color = 0xFF0000; // red
-	if (vars->side == 2)
-		color = 0x0012FF; // red
-	if (vars->side == 3)
-		color = 0x8D00FF; // red
-	while (vars->drawstart < vars->drawend)	// sol? wtf
-	{
-		vars->img_data[vars->drawstart * vars->width + (int)vars->x] = color;
-		vars->drawstart++;
-	}
-}
 
 void			raycast_draw_walls(t_game *vars)
 {
