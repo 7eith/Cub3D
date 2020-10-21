@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/19 02:36:25 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/21 09:31:40 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ typedef	struct			s_textures
 	int					*data;
 }						t_textures;
 
+typedef	struct			s_sprite
+{
+	int					pos_x;
+	int					pos_y;
+}						t_sprite;
+
 typedef struct			s_game
 {
 	void				*mlx;
@@ -126,8 +132,6 @@ typedef struct			s_game
 	float				posY;
 	float				dirX;
 	float				dirY;
-	float				planeX;
-	float				planeY;
 
 	float				cameraX;
 
@@ -165,6 +169,7 @@ typedef struct			s_game
 
 	float				move_speed;
 	float				rotation_speed;
+	t_list				*sprites;
 }						t_game;
 
 /*
@@ -197,6 +202,12 @@ void					parse_map(t_game *vars, int fd);
 
 int						is_only_resolution(char *line);
 void					check_screen_size(t_game *vars);
+
+/*
+**	parser/sprite_parser.c
+*/
+
+void					parse_sprite(t_game *vars);
 
 /*
 **	utils/exit_manager.c
@@ -266,5 +277,10 @@ int						raycast(t_game *vars);
 
 void					initiate_raycast_and_mlx_data(t_game *vars);
 
+/*
+**	engine/ui/raycast_drawer.c
+*/
+
+void					raycast_draw(t_game *vars);
 
 #endif
