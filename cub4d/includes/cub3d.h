@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/21 09:31:40 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 19:30:50 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef	struct			s_sprite
 {
 	int					pos_x;
 	int					pos_y;
+	float				distance;
 }						t_sprite;
 
 typedef struct			s_game
@@ -169,7 +170,34 @@ typedef struct			s_game
 
 	float				move_speed;
 	float				rotation_speed;
-	t_list				*sprites;
+
+	t_sprite			*sprites;
+	int					sprites_count;
+	float				*perp_buffer;
+
+	int					sprite_index;
+
+	float				sprite_x;
+	float				sprite_y;
+
+	float				invdet;
+
+	float				transform_x;
+	float				transform_y;
+
+	int					sprite_screen_x;
+
+	int					sprite_width;
+	int					sprite_height;
+
+	int					sprite_drawStart_x;
+	int					sprite_drawStart_y;
+
+	int					sprite_drawEnd_x;
+	int					sprite_drawEnd_y;
+
+	int					sprite_stripe;
+	int					sprite_d;
 }						t_game;
 
 /*
@@ -282,5 +310,7 @@ void					initiate_raycast_and_mlx_data(t_game *vars);
 */
 
 void					raycast_draw(t_game *vars);
+
+void					draw_sprites(t_game *vars);
 
 #endif

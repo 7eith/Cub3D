@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 06:22:39 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/21 12:33:05 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 23:23:02 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void			raycast_get_values_for_sky_and_floor(t_game *vars)
 int				raycast(t_game *vars)
 {
 	vars->x = 0;
-	vars->wall_height = vars->height / 1.35; // height of a walls
+	vars->wall_height = vars->height / 1.35;
+	vars->perp_buffer = malloc(sizeof(float) * vars->width);
 	while (vars->x < vars->width)
 	{
 		raycast_init_values(vars);
@@ -109,10 +110,14 @@ int				raycast(t_game *vars)
 		raycast_hit(vars);
 		raycast_get_values_for_sky_and_floor(vars);
 		raycast_draw(vars);
+		vars->perp_buffer[(int)vars->x] = vars->perpwalldist;
 		vars->x++;
 	}
+	draw_sprites(vars);
 	key_loop_controller(vars);
 	mlx_clear_window(vars->mlx, vars->window);
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
+	mlx_do_sync(vars->mlx);
+	free(vars->perp_buffer);
 	return (1);
 }

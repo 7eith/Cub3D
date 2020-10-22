@@ -6,7 +6,7 @@
 #    By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/30 01:23:03 by amonteli          #+#    #+#              #
-#    Updated: 2020/10/19 18:48:43 by amonteli         ###   ########lyon.fr    #
+#    Updated: 2020/10/22 19:59:27 by amonteli         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS			=		\
 						main.c \
 						$(addprefix parser/, parser.c args_parser.c configuration_parser.c map_parser.c parser_utils.c maps/map_checker.c sprite_parser.c) \
 						$(addprefix engine/, window_manager.c keyboard_manager.c movement_manager.c rotation_manager.c) \
-						$(addprefix engine/ui/, raycast.c init_raycast.c raycast_drawer.c) \
+						$(addprefix engine/ui/, raycast.c init_raycast.c raycast_drawer.c sprite_drawer.c) \
 						$(addprefix utils/, exit_manager.c utilities.c) \
 
 OBJS			= 		$(addprefix srcs/, $(SRCS:.c=.o))
