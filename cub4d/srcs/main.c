@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:26:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/19 05:00:21 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/21 18:17:25 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_game						*init_vars(void)
 	vars->rotation_speed = 0.06f;
 	vars->pos_type = 0;
 	vars->key = 0;
+	vars->sprites = NULL;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
 	return (vars);
