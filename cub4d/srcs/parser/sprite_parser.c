@@ -6,18 +6,18 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 18:42:18 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/22 18:18:06 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 00:12:43 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_sprite	create_sprite(int posX, int posY)
+t_sprite	create_sprite(int pos_x, int pos_y)
 {
 	t_sprite	sprite;
 
-	sprite.pos_x = posX;
-	sprite.pos_y = posY;
+	sprite.pos_x = pos_x;
+	sprite.pos_y = pos_y;
 	sprite.distance = -1;
 	return (sprite);
 }
