@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/22 19:30:50 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 00:07:33 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ enum					e_colored_textures
 
 enum					e_textures
 {
-	NORTH,
-	WEST,
 	SOUTH,
+	NORTH,
 	EAST,
+	WEST,
 	SPRITE
 };
 
