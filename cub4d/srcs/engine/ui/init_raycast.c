@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 04:16:31 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/19 02:51:25 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 23:48:49 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void		initialize_dir_and_cam(t_game *vars)
 
 	rotation = 0;
 	if (vars->pos_type == 'N')
-		rotation = 4.71;
+		rotation = 3.14;
 	if (vars->pos_type == 'S')
 		rotation = 1.58;
 	if (vars->pos_type == 'E')
-		rotation = 3.14;
+		rotation = 4.71;
 	vars->old_dir_x = vars->dirX;
 	vars->dirX = vars->dirX * cos(-rotation) - vars->dirY * sin(-rotation);
 	vars->dirY = vars->old_dir_x * sin(-rotation) + vars->dirY * cos(-rotation);
