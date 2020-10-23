@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 01:45:44 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 11:49:57 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,7 @@ void					parse_sprite(t_game *vars);
 */
 
 void					exit_program(t_game *vars, char *reason);
+void					clean_exit(t_game *vars);
 
 /*
 **	utils/utilities.c

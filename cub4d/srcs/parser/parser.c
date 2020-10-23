@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:25:57 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/21 16:36:26 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 12:13:56 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		parse_file(t_game *vars, char *filename)
 		exit_program(vars, "Failed to read file!");
 	parse_configuration(vars, fd);
 	parse_map(vars, fd);
+	close(fd);
 	set_player_in_map(vars);
 	parse_sprite(vars);
 }

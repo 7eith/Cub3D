@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 01:31:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 04:31:47 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 12:13:44 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void		parse_map(t_game *vars, int fd)
 
 	count = -1;
 	read_map(vars, fd);
-	close(fd);
 	if (!check_map_buffer(vars))
 		exit_program(vars, "Invalid map!");
 	vars->map = ft_split(vars->map_buf, '\n');

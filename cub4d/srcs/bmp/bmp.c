@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 00:13:23 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 11:40:20 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 12:03:03 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ void		save_bmp(t_game *vars)
 		height_to_write--;
 	}
 	close(vars->bmp->fd);
+	// mlx_destroy_image()
+	clean_exit(vars);
 }
