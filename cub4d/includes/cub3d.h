@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 00:07:33 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 01:45:44 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,21 @@ typedef	struct			s_sprite
 	float				distance;
 }						t_sprite;
 
+typedef	struct			s_bmp
+{
+	int					width;
+	int					height;
+	unsigned int		bytes_count;
+	int					width_in_bytes;
+	unsigned int		image_size;
+	unsigned int		bytes_size;
+	unsigned int		bfoffbits;
+	unsigned int		file_size;
+	unsigned int		biplanes;
+	unsigned char		header[54];
+	int					fd;
+}						t_bmp;
+
 typedef struct			s_game
 {
 	void				*mlx;
@@ -198,6 +213,8 @@ typedef struct			s_game
 
 	int					sprite_stripe;
 	int					sprite_d;
+
+	t_bmp				*bmp;
 }						t_game;
 
 /*
@@ -312,5 +329,9 @@ void					initiate_raycast_and_mlx_data(t_game *vars);
 void					raycast_draw(t_game *vars);
 
 void					draw_sprites(t_game *vars);
+
+void					init_bmp(t_game *vars);
+void					save_bmp(t_game *vars);
+
 
 #endif

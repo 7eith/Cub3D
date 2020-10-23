@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:19:30 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/18 04:54:27 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 11:44:29 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ void		open_window(t_game *vars)
 	int		endian;
 
 	initiate_raycast_and_mlx_data(vars);
-
-	vars->window = mlx_new_window(vars->mlx, vars->width, vars->height, "Cub3D");
 	vars->img = mlx_new_image(vars->mlx, vars->width, vars->height);
 	vars->img_data = (int *)mlx_get_data_addr(vars->img, &bits, &line_size, &endian);
+
+	if (vars->screen)
+	{
+		init_bmp(vars);
+		raycast(vars);
+	}
+
+	vars->window = mlx_new_window(vars->mlx, vars->width, vars->height, "Cub3D");
 
 	mlx_loop_hook(vars->mlx, &raycast, vars);
 	mlx_hook(vars->window, 2, 2, &key_press, vars);

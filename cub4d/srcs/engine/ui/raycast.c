@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 06:22:39 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/22 23:23:02 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 01:51:34 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,11 @@ int				raycast(t_game *vars)
 	}
 	draw_sprites(vars);
 	key_loop_controller(vars);
+	free(vars->perp_buffer);
+	if (vars->screen)
+		save_bmp(vars);
 	mlx_clear_window(vars->mlx, vars->window);
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
 	mlx_do_sync(vars->mlx);
-	free(vars->perp_buffer);
 	return (1);
 }
