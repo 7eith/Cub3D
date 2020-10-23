@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 02:20:19 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 12:11:37 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 14:07:38 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ void		free_mlx(t_game *vars)
 	{
 		if (vars->paths[i])
 			free(vars->paths[i]);
-		if (vars->textures[i].img)
+		if (vars->textures[i].width > 0)
 			mlx_destroy_image(vars->mlx, vars->textures[i].img);
 		i++;
 	}
-	mlx_destroy_image(vars->mlx, vars->img);
+	if (vars->img)
+		mlx_destroy_image(vars->mlx, vars->img);
 	free(vars->mlx);
 }
 
