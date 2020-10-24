@@ -6,32 +6,11 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 01:31:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 12:13:44 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 02:40:44 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-char		*get_line_with_removed_space(char *line)
-{
-	int		count;
-	int		size;
-	char	*str;
-
-	count = 0;
-	size = 0;
-	while (line[count])
-		if (line[count++] != ' ')
-			size++;
-	str = ft_calloc(size + 1, sizeof(char));
-	count = -1;
-	size = 0;
-	while (line[++count])
-		if (line[count] != ' ')
-			str[size++] = line[count];
-	free(line);
-	return (str);
-}
 
 void		read_map(t_game *vars, int fd)
 {
@@ -62,11 +41,11 @@ int			check_map_buffer(t_game *vars)
 	while (vars->map_buf[count])
 	{
 		if (!ft_strchr(MAP_FLAGS, vars->map_buf[count]))
-			return (0);
+			return (-1);
 		if (ft_strchr(MAP_POSITION_TYPE, vars->map_buf[count]))
 		{
 			if (vars->pos_type)
-				return (0);
+				return (-2);
 			vars->pos_type = vars->map_buf[count];
 		}
 		count++;
@@ -76,17 +55,14 @@ int			check_map_buffer(t_game *vars)
 
 void		parse_map(t_game *vars, int fd)
 {
-	int		count;
+	int		ret;
 
-	count = -1;
 	read_map(vars, fd);
-	if (!check_map_buffer(vars))
-		exit_program(vars, "Invalid map!");
+	if ((ret = check_map_buffer(vars)) != 1)
+		exit_program(vars, ret == -1 ? "Invalid char in map" : "Too many spawn point!");
 	vars->map = ft_split(vars->map_buf, '\n');
 	if (!vars->map)
 		exit_program(vars, "Failed to read map.");
-	while (vars->map[++count])
-		vars->map[count] = get_line_with_removed_space(vars->map[count]);
 	if (!is_valid_map(vars))
 		exit_program(vars, "Invalid maps.");
 }

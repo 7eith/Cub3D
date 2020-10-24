@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 11:49:57 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 02:29:11 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ typedef struct			s_game
 	int					sprite_d;
 
 	t_bmp				*bmp;
+	int					map_height;
 }						t_game;
 
 /*
