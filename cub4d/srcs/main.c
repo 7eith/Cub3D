@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:26:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/24 01:09:52 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 02:46:51 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ t_game						*init_vars(void)
 	vars->img = NULL;
 	while (index < TEXTURES)
 		vars->paths[index++] = NULL;
-	// index = 0;
-	// while (index < TEXTURES)
-	// 	vars->textures[index++] = (t_textures *)NULL;
 	return (vars);
 }
 

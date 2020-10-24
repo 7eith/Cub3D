@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 01:25:57 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 12:13:56 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 03:02:16 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void		set_player_in_map(t_game *vars)
 		{
 			if (ft_strchr(MAP_POSITION_TYPE, vars->map[x][y]))
 			{
-				vars->posX = (float)x + 0.5;
-				vars->posY = (float)y + 0.5;
+				vars->posx = (float)x + 0.5;
+				vars->posy = (float)y + 0.5;
 				found = 1;
 			}
 			y++;

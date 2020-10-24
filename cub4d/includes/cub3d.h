@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 09:20:44 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/24 02:29:11 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 03:57:48 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,23 +144,23 @@ typedef struct			s_game
 
 	char				pos_type;
 
-	float				posX;
-	float				posY;
-	float				dirX;
-	float				dirY;
+	float				posx;
+	float				posy;
+	float				dirx;
+	float				diry;
 
-	float				cameraX;
+	float				camerax;
 
-	float				raydirX;
-	float				raydirY;
+	float				raydirx;
+	float				raydiry;
 
-	float				cam_plane_X;
-	float				cam_plane_Y;
+	float				cam_plane_x;
+	float				cam_plane_y;
 
-	float				sidedistX;
-	float				sidedistY;
-	float				deltadistX;
-	float				deltadistY;
+	float				sidedistx;
+	float				sidedisty;
+	float				deltadistx;
+	float				deltadisty;
 	float				perpwalldist;
 
 	float				time;
@@ -168,10 +168,10 @@ typedef struct			s_game
 	float				old_dir_x;
 	float				old_cam_plane_x;
 
-	int					mapX;
-	int					mapY;
-	int					stepX;
-	int					stepY;
+	int					mapx;
+	int					mapy;
+	int					stepx;
+	int					stepy;
 	int					hit;
 	int					side;
 
@@ -205,17 +205,28 @@ typedef struct			s_game
 	int					sprite_width;
 	int					sprite_height;
 
-	int					sprite_drawStart_x;
-	int					sprite_drawStart_y;
+	int					sprite_drawstart_x;
+	int					sprite_drawstart_y;
 
-	int					sprite_drawEnd_x;
-	int					sprite_drawEnd_y;
+	int					sprite_drawend_x;
+	int					sprite_drawend_y;
 
 	int					sprite_stripe;
 	int					sprite_d;
 
 	t_bmp				*bmp;
 	int					map_height;
+
+	float				wallx;
+	int					texturex;
+	float				step;
+	float				texturepos;
+	float				texturey;
+
+	int					sprite_texturex;
+	int					sprite_texturey;
+	unsigned int		sprite_color;
+	int					sprite_yi;
 }						t_game;
 
 /*
@@ -248,6 +259,8 @@ void					parse_map(t_game *vars, int fd);
 
 int						is_only_resolution(char *line);
 void					check_screen_size(t_game *vars);
+void					check_map_hole(t_game *vars,
+char **map, int pos, size_t size);
 
 /*
 **	parser/sprite_parser.c
@@ -269,7 +282,8 @@ void					clean_exit(t_game *vars);
 int						is_valid_configuration(t_game *vars);
 t_color					create_color(int r, int g, int b);
 float					ft_fabs(float number);
-
+void					assign_side(t_game *vars);
+void					sprite_fill_img_data(t_game *vars);
 
 int						is_valid_map(t_game *vars);
 
@@ -334,6 +348,5 @@ void					draw_sprites(t_game *vars);
 
 void					init_bmp(t_game *vars);
 void					save_bmp(t_game *vars);
-
 
 #endif

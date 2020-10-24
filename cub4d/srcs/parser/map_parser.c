@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 01:31:55 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/24 02:40:44 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 03:26:53 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void		parse_map(t_game *vars, int fd)
 
 	read_map(vars, fd);
 	if ((ret = check_map_buffer(vars)) != 1)
-		exit_program(vars, ret == -1 ? "Invalid char in map" : "Too many spawn point!");
+		exit_program(vars, ret == -1
+		? "Invalid char in map" : "Too many spawn point!");
 	vars->map = ft_split(vars->map_buf, '\n');
 	if (!vars->map)
 		exit_program(vars, "Failed to read map.");

@@ -6,13 +6,13 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 22:22:56 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/14 06:19:05 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 03:54:19 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		is_only_resolution(char *line)
+int			is_only_resolution(char *line)
 {
 	int		count;
 
@@ -26,7 +26,7 @@ int		is_only_resolution(char *line)
 	return (1);
 }
 
-void	check_screen_size(t_game *vars)
+void		check_screen_size(t_game *vars)
 {
 	int		screensize_x;
 	int		screensize_y;
@@ -40,4 +40,30 @@ void	check_screen_size(t_game *vars)
 		vars->width = screensize_x;
 	if (vars->height > screensize_y)
 		vars->height = screensize_y;
+}
+
+void		check_map_hole(t_game *vars, char **map, int pos, size_t size)
+{
+	int			cursor;
+
+	cursor = size;
+	if (pos > 0 && size < ft_strlen(map[pos - 1]))
+	{
+		while (map[pos - 1][cursor])
+		{
+			if (map[pos - 1][cursor] != '1')
+				exit_program(vars, "Map is not close!");
+			cursor++;
+		}
+	}
+	cursor = size;
+	if (pos < vars->map_height - 1 && size < ft_strlen(map[pos + 1]))
+	{
+		while (map[pos + 1][cursor])
+		{
+			if (map[pos + 1][cursor] != '1')
+				exit_program(vars, "Map is not close!");
+			cursor++;
+		}
+	}
 }

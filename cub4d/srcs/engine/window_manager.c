@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:19:30 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 11:44:29 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 02:55:37 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int			close_window(t_game *vars)
 {
-	mlx_destroy_image(vars->mlx, vars->img);
-	exit(1);
+	clean_exit(vars);
+	return (1);
 }
 
 void		open_window(t_game *vars)
@@ -26,21 +26,19 @@ void		open_window(t_game *vars)
 
 	initiate_raycast_and_mlx_data(vars);
 	vars->img = mlx_new_image(vars->mlx, vars->width, vars->height);
-	vars->img_data = (int *)mlx_get_data_addr(vars->img, &bits, &line_size, &endian);
-
+	vars->img_data =
+	(int *)mlx_get_data_addr(vars->img, &bits, &line_size, &endian);
 	if (vars->screen)
 	{
 		init_bmp(vars);
 		raycast(vars);
 	}
-
-	vars->window = mlx_new_window(vars->mlx, vars->width, vars->height, "Cub3D");
-
+	vars->window =
+	mlx_new_window(vars->mlx, vars->width, vars->height, "Cub3D");
 	mlx_loop_hook(vars->mlx, &raycast, vars);
 	mlx_hook(vars->window, 2, 2, &key_press, vars);
 	mlx_hook(vars->window, 3, 2, &key_release, vars);
 	mlx_hook(vars->window, 17, 1, close_window, vars);
 	mlx_hook(vars->window, 33, 1L << 17, close_window, vars);
-
 	mlx_loop(vars->mlx);
 }

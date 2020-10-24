@@ -6,7 +6,7 @@
 /*   By: amonteli <amonteli@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 04:16:31 by amonteli          #+#    #+#             */
-/*   Updated: 2020/10/23 00:07:57 by amonteli         ###   ########lyon.fr   */
+/*   Updated: 2020/10/24 03:04:01 by amonteli         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void		initialize_raycast_texture_and_data(t_game *vars, int type)
 	texture.bpp = -1;
 	texture.size = -1;
 	texture.endian = -1;
-	texture.img = mlx_xpm_file_to_image(vars->mlx, vars->paths[type], &texture.width, &texture.height);
+	texture.img = mlx_xpm_file_to_image(vars->mlx, vars->paths[type],
+	&texture.width, &texture.height);
 	if (!texture.img)
 		exit_program(vars, "Failed to convert .xpm to image!");
-	texture.data = (int *)mlx_get_data_addr(texture.img, &texture.bpp, &texture.size, &texture.endian);
+	texture.data = (int *)mlx_get_data_addr(texture.img, &texture.bpp,
+	&texture.size, &texture.endian);
 	if (!texture.data)
 		exit_program(vars, "Invalid data!");
 	if (!texture.width || !texture.height)
@@ -43,18 +45,18 @@ void		initialize_raycast_textures(t_game *vars)
 
 void		initialize_raycast_default_value(t_game *vars)
 {
-	vars->dirX = -1;
-	vars->dirY = 0;
-	vars->cam_plane_X = 0;
-	vars->cam_plane_Y = -0.66;
-	vars->raydirX = 0;
-	vars->raydirY = 0;
+	vars->dirx = -1;
+	vars->diry = 0;
+	vars->cam_plane_x = 0;
+	vars->cam_plane_y = -0.66;
+	vars->raydirx = 0;
+	vars->raydiry = 0;
 	vars->time = 0;
 	vars->old_time = 0;
-	vars->sidedistX = 0;
-	vars->sidedistY = 0;
-	vars->deltadistX = 0;
-	vars->deltadistX = 0;
+	vars->sidedistx = 0;
+	vars->sidedisty = 0;
+	vars->deltadistx = 0;
+	vars->deltadistx = 0;
 	vars->perpwalldist = 0;
 }
 
@@ -69,14 +71,14 @@ void		initialize_dir_and_cam(t_game *vars)
 		rotation = 3.14;
 	if (vars->pos_type == 'E')
 		rotation = 1.58;
-	vars->old_dir_x = vars->dirX;
-	vars->dirX = vars->dirX * cos(-rotation) - vars->dirY * sin(-rotation);
-	vars->dirY = vars->old_dir_x * sin(-rotation) + vars->dirY * cos(-rotation);
-	vars->old_cam_plane_x = vars->cam_plane_X;
-	vars->cam_plane_X = vars->cam_plane_X * cos(-rotation)
-		- vars->cam_plane_Y * sin(-rotation);
-	vars->cam_plane_Y = vars->old_cam_plane_x * sin(-rotation)
-		+ vars->cam_plane_Y * cos(-rotation);
+	vars->old_dir_x = vars->dirx;
+	vars->dirx = vars->dirx * cos(-rotation) - vars->diry * sin(-rotation);
+	vars->diry = vars->old_dir_x * sin(-rotation) + vars->diry * cos(-rotation);
+	vars->old_cam_plane_x = vars->cam_plane_x;
+	vars->cam_plane_x = vars->cam_plane_x * cos(-rotation)
+		- vars->cam_plane_y * sin(-rotation);
+	vars->cam_plane_y = vars->old_cam_plane_x * sin(-rotation)
+		+ vars->cam_plane_y * cos(-rotation);
 }
 
 void		initiate_raycast_and_mlx_data(t_game *vars)
