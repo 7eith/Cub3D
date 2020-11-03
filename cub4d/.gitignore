@@ -1,7 +1,0 @@
-*.o
-*.json
-.vscode/
-a.out
-libft
-cub3D
-*cub3D
